@@ -19,6 +19,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedContent", "SharedCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grids", "Grids\Grids.csproj", "{AEF24D62-3F2B-454F-B194-6C74B239CFB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imgui", "Imgui\Imgui.csproj", "{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AEF24D62-3F2B-454F-B194-6C74B239CFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEF24D62-3F2B-454F-B194-6C74B239CFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEF24D62-3F2B-454F-B194-6C74B239CFB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
