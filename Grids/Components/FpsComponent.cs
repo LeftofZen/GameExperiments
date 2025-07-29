@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharedContent;
 
 namespace Experiments.Components
 {
@@ -19,7 +20,7 @@ namespace Experiments.Components
 
 		protected override void LoadContent()
 		{
-			_font = Game.Content.Load<SpriteFont>("Calibri");
+			_font = Game.Content.Load<SpriteFont>($"Fonts\\{FontNames._Pixeltype}");
 			base.LoadContent();
 		}
 

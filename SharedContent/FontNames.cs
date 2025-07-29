@@ -1,4 +1,4 @@
-﻿namespace Fonts
+﻿namespace SharedContent
 {
 	// Fonts from https://www.1001fonts.com/ and https://www.dafont.com/
 	public static class FontNames

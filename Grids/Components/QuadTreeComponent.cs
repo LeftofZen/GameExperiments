@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using SharedContent;
 using System.Linq;
 
 namespace Experiments.Components
@@ -26,7 +27,7 @@ namespace Experiments.Components
 
 			//_quadtree.Draw(_spriteBatch);
 			Draw(_spriteBatch, _quadtree);
-			DrawDebug(_spriteBatch, _quadtree, Game.Content.Load<SpriteFont>("Calibri"), new Vector2(600, 10));
+			DrawDebug(_spriteBatch, _quadtree, Game.Content.Load<SpriteFont>($"Fonts\\{FontNames._Pixeltype}"), new Vector2(600, 10));
 
 			_spriteBatch.End();
 			base.Draw(gameTime);

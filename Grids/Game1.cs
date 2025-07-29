@@ -26,7 +26,7 @@ namespace Experiments
 			graphics.ApplyChanges();
 
 			Window.AllowAltF4 = true;
-			Window.Title = "Graphics Experiments";
+			Window.Title = "Grid Experiments";
 			Window.AllowUserResizing = true;
 			//Window.IsBorderless = true;
 		}
