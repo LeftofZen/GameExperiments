@@ -13,12 +13,61 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/{PixelFlag}.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/{PixelFlag}.spritefont
+
 #begin Fonts/256 Bytes.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/256 Bytes.spritefont
+
+#begin Fonts/256 Bytes.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/256 Bytes.spritefont
+
+#begin Fonts/256 Bytes.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/256 Bytes.spritefont
+
+#begin Fonts/7 Squared.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/7 Squared.spritefont
+
+#begin Fonts/7x5.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/7x5.spritefont
+
+#begin Fonts/8-bit Arcade In.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit Arcade In.spritefont
+
+#begin Fonts/8-bit Arcade In.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit Arcade In.spritefont
 
 #begin Fonts/8-bit Arcade In.spritefont
 /importer:FontDescriptionImporter
@@ -34,12 +83,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/8-bit Arcade Out.spritefont
 
+#begin Fonts/8-bit Arcade Out.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit Arcade Out.spritefont
+
+#begin Fonts/8-bit Arcade Out.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit Arcade Out.spritefont
+
 #begin Fonts/8-BIT WONDER.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/8-BIT WONDER.spritefont
+
+#begin Fonts/8-BIT WONDER.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-BIT WONDER.spritefont
+
+#begin Fonts/8-BIT WONDER.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-BIT WONDER.spritefont
+
+#begin Fonts/8-bit-fortress.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit-fortress.spritefont
+
+#begin Fonts/8-bit-fortress.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/8-bit-fortress.spritefont
 
 #begin Fonts/8-bit-fortress.spritefont
 /importer:FontDescriptionImporter
@@ -55,12 +146,61 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/A Goblin Appears!.spritefont
 
+#begin Fonts/A Goblin Appears!.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/A Goblin Appears!.spritefont
+
+#begin Fonts/A Goblin Appears!.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/A Goblin Appears!.spritefont
+
+#begin Fonts/advanced_pixel_lcd-7.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/advanced_pixel_lcd-7.spritefont
+
 #begin Fonts/alagard.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/alagard.spritefont
+
+#begin Fonts/alagard.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/alagard.spritefont
+
+#begin Fonts/alagard.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/alagard.spritefont
+
+#begin Fonts/AlveraDEMO-BoldCircle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-BoldCircle.spritefont
+
+#begin Fonts/AlveraDEMO-BoldCircle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-BoldCircle.spritefont
 
 #begin Fonts/AlveraDEMO-BoldCircle.spritefont
 /importer:FontDescriptionImporter
@@ -76,12 +216,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/AlveraDEMO-BoldSquare.spritefont
 
+#begin Fonts/AlveraDEMO-BoldSquare.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-BoldSquare.spritefont
+
+#begin Fonts/AlveraDEMO-BoldSquare.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-BoldSquare.spritefont
+
 #begin Fonts/AlveraDEMO-RegularCircle.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/AlveraDEMO-RegularCircle.spritefont
+
+#begin Fonts/AlveraDEMO-RegularCircle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-RegularCircle.spritefont
+
+#begin Fonts/AlveraDEMO-RegularCircle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-RegularCircle.spritefont
+
+#begin Fonts/AlveraDEMO-RegularSquare.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-RegularSquare.spritefont
+
+#begin Fonts/AlveraDEMO-RegularSquare.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AlveraDEMO-RegularSquare.spritefont
 
 #begin Fonts/AlveraDEMO-RegularSquare.spritefont
 /importer:FontDescriptionImporter
@@ -97,12 +279,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ARCADE.spritefont
 
+#begin Fonts/ARCADE.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ARCADE.spritefont
+
+#begin Fonts/ARCADE.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ARCADE.spritefont
+
 #begin Fonts/ARCADECLASSIC.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ARCADECLASSIC.spritefont
+
+#begin Fonts/ARCADECLASSIC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ARCADECLASSIC.spritefont
+
+#begin Fonts/ARCADECLASSIC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ARCADECLASSIC.spritefont
+
+#begin Fonts/ari-w9500.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500.spritefont
+
+#begin Fonts/ari-w9500.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500.spritefont
 
 #begin Fonts/ari-w9500.spritefont
 /importer:FontDescriptionImporter
@@ -118,12 +342,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ari-w9500-bold.spritefont
 
+#begin Fonts/ari-w9500-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-bold.spritefont
+
+#begin Fonts/ari-w9500-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-bold.spritefont
+
 #begin Fonts/ari-w9500-condensed.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ari-w9500-condensed.spritefont
+
+#begin Fonts/ari-w9500-condensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed.spritefont
+
+#begin Fonts/ari-w9500-condensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed.spritefont
+
+#begin Fonts/ari-w9500-condensed-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed-bold.spritefont
+
+#begin Fonts/ari-w9500-condensed-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed-bold.spritefont
 
 #begin Fonts/ari-w9500-condensed-bold.spritefont
 /importer:FontDescriptionImporter
@@ -139,12 +405,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ari-w9500-condensed-display.spritefont
 
+#begin Fonts/ari-w9500-condensed-display.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed-display.spritefont
+
+#begin Fonts/ari-w9500-condensed-display.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-condensed-display.spritefont
+
 #begin Fonts/ari-w9500-display.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ari-w9500-display.spritefont
+
+#begin Fonts/ari-w9500-display.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-display.spritefont
+
+#begin Fonts/ari-w9500-display.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ari-w9500-display.spritefont
+
+#begin Fonts/Astron Boy Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Italic.spritefont
+
+#begin Fonts/Astron Boy Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Italic.spritefont
 
 #begin Fonts/Astron Boy Italic.spritefont
 /importer:FontDescriptionImporter
@@ -160,6 +468,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Astron Boy Video.spritefont
 
+#begin Fonts/Astron Boy Video.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Video.spritefont
+
+#begin Fonts/Astron Boy Video.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Video.spritefont
+
+#begin Fonts/Astron Boy Wonder.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Wonder.spritefont
+
+#begin Fonts/Astron Boy Wonder.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy Wonder.spritefont
+
 #begin Fonts/Astron Boy Wonder.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -173,6 +509,41 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Astron Boy.spritefont
+
+#begin Fonts/Astron Boy.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy.spritefont
+
+#begin Fonts/Astron Boy.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Astron Boy.spritefont
+
+#begin Fonts/AtariST8x16SystemFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AtariST8x16SystemFont.spritefont
+
+#begin Fonts/bedstead.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead.spritefont
+
+#begin Fonts/bedstead.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead.spritefont
 
 #begin Fonts/bedstead.spritefont
 /importer:FontDescriptionImporter
@@ -188,12 +559,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-bold.spritefont
 
+#begin Fonts/bedstead-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-bold.spritefont
+
+#begin Fonts/bedstead-bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-bold.spritefont
+
 #begin Fonts/bedstead-boldcondensed.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-boldcondensed.spritefont
+
+#begin Fonts/bedstead-boldcondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldcondensed.spritefont
+
+#begin Fonts/bedstead-boldcondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldcondensed.spritefont
+
+#begin Fonts/bedstead-boldextended.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldextended.spritefont
+
+#begin Fonts/bedstead-boldextended.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldextended.spritefont
 
 #begin Fonts/bedstead-boldextended.spritefont
 /importer:FontDescriptionImporter
@@ -209,12 +622,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-boldextracondensed.spritefont
 
+#begin Fonts/bedstead-boldextracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldextracondensed.spritefont
+
+#begin Fonts/bedstead-boldextracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldextracondensed.spritefont
+
 #begin Fonts/bedstead-boldsemicondensed.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-boldsemicondensed.spritefont
+
+#begin Fonts/bedstead-boldsemicondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldsemicondensed.spritefont
+
+#begin Fonts/bedstead-boldsemicondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldsemicondensed.spritefont
+
+#begin Fonts/bedstead-boldultracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldultracondensed.spritefont
+
+#begin Fonts/bedstead-boldultracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-boldultracondensed.spritefont
 
 #begin Fonts/bedstead-boldultracondensed.spritefont
 /importer:FontDescriptionImporter
@@ -230,12 +685,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-condensed.spritefont
 
+#begin Fonts/bedstead-condensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-condensed.spritefont
+
+#begin Fonts/bedstead-condensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-condensed.spritefont
+
 #begin Fonts/bedstead-extended.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-extended.spritefont
+
+#begin Fonts/bedstead-extended.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-extended.spritefont
+
+#begin Fonts/bedstead-extended.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-extended.spritefont
+
+#begin Fonts/bedstead-extracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-extracondensed.spritefont
+
+#begin Fonts/bedstead-extracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-extracondensed.spritefont
 
 #begin Fonts/bedstead-extracondensed.spritefont
 /importer:FontDescriptionImporter
@@ -251,12 +748,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-semicondensed.spritefont
 
+#begin Fonts/bedstead-semicondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-semicondensed.spritefont
+
+#begin Fonts/bedstead-semicondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-semicondensed.spritefont
+
 #begin Fonts/bedstead-ultracondensed.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/bedstead-ultracondensed.spritefont
+
+#begin Fonts/bedstead-ultracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-ultracondensed.spritefont
+
+#begin Fonts/bedstead-ultracondensed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bedstead-ultracondensed.spritefont
+
+#begin Fonts/BlockBlueprint.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BlockBlueprint.spritefont
+
+#begin Fonts/BlockBlueprint.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BlockBlueprint.spritefont
 
 #begin Fonts/BlockBlueprint.spritefont
 /importer:FontDescriptionImporter
@@ -272,6 +811,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/BlockCraft.spritefont
 
+#begin Fonts/BlockCraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BlockCraft.spritefont
+
+#begin Fonts/BlockCraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BlockCraft.spritefont
+
+#begin Fonts/Blue Screen Personal Use.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Blue Screen Personal Use.spritefont
+
+#begin Fonts/Blue Screen Personal Use.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Blue Screen Personal Use.spritefont
+
 #begin Fonts/Blue Screen Personal Use.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -285,6 +852,48 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/BMSPA___.spritefont
+
+#begin Fonts/BMSPA___.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BMSPA___.spritefont
+
+#begin Fonts/BMSPA___.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BMSPA___.spritefont
+
+#begin Fonts/codex.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/codex.spritefont
+
+#begin Fonts/console.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/console.spritefont
+
+#begin Fonts/Crang.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Crang.spritefont
+
+#begin Fonts/Crang.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Crang.spritefont
 
 #begin Fonts/Crang.spritefont
 /importer:FontDescriptionImporter
@@ -300,12 +909,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Cyber Alert Italic.spritefont
 
+#begin Fonts/Cyber Alert Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyber Alert Italic.spritefont
+
+#begin Fonts/Cyber Alert Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyber Alert Italic.spritefont
+
 #begin Fonts/Cyber Alert.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Cyber Alert.spritefont
+
+#begin Fonts/Cyber Alert.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyber Alert.spritefont
+
+#begin Fonts/Cyber Alert.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyber Alert.spritefont
+
+#begin Fonts/deltarune.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/deltarune.spritefont
+
+#begin Fonts/deltarune.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/deltarune.spritefont
 
 #begin Fonts/deltarune.spritefont
 /importer:FontDescriptionImporter
@@ -321,12 +972,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DePixelBreit.spritefont
 
+#begin Fonts/DePixelBreit.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelBreit.spritefont
+
+#begin Fonts/DePixelBreit.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelBreit.spritefont
+
 #begin Fonts/DePixelBreitFett.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DePixelBreitFett.spritefont
+
+#begin Fonts/DePixelBreitFett.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelBreitFett.spritefont
+
+#begin Fonts/DePixelBreitFett.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelBreitFett.spritefont
+
+#begin Fonts/DePixelHalbfett.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelHalbfett.spritefont
+
+#begin Fonts/DePixelHalbfett.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelHalbfett.spritefont
 
 #begin Fonts/DePixelHalbfett.spritefont
 /importer:FontDescriptionImporter
@@ -342,6 +1035,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DePixelIllegible.spritefont
 
+#begin Fonts/DePixelIllegible.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelIllegible.spritefont
+
+#begin Fonts/DePixelIllegible.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelIllegible.spritefont
+
+#begin Fonts/DePixelKlein.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelKlein.spritefont
+
+#begin Fonts/DePixelKlein.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelKlein.spritefont
+
 #begin Fonts/DePixelKlein.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -355,6 +1076,41 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DePixelSchmal.spritefont
+
+#begin Fonts/DePixelSchmal.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelSchmal.spritefont
+
+#begin Fonts/DePixelSchmal.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DePixelSchmal.spritefont
+
+#begin Fonts/doomed.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/doomed.spritefont
+
+#begin Fonts/dot_digital-7.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/dot_digital-7.spritefont
+
+#begin Fonts/dot_digital-7.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/dot_digital-7.spritefont
 
 #begin Fonts/dot_digital-7.spritefont
 /importer:FontDescriptionImporter
@@ -370,12 +1126,61 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/dpcomic.spritefont
 
+#begin Fonts/dpcomic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/dpcomic.spritefont
+
+#begin Fonts/dpcomic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/dpcomic.spritefont
+
+#begin Fonts/Dune_Rise.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Dune_Rise.spritefont
+
 #begin Fonts/E4 2017.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/E4 2017.spritefont
+
+#begin Fonts/E4 2017.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/E4 2017.spritefont
+
+#begin Fonts/E4 2017.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/E4 2017.spritefont
+
+#begin Fonts/Early GameBoy.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Early GameBoy.spritefont
+
+#begin Fonts/Early GameBoy.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Early GameBoy.spritefont
 
 #begin Fonts/Early GameBoy.spritefont
 /importer:FontDescriptionImporter
@@ -391,6 +1196,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/edundot.spritefont
 
+#begin Fonts/edundot.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/edundot.spritefont
+
+#begin Fonts/edundot.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/edundot.spritefont
+
+#begin Fonts/Fake Receipt.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Fake Receipt.spritefont
+
+#begin Fonts/Fake Receipt.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Fake Receipt.spritefont
+
 #begin Fonts/Fake Receipt.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -404,6 +1237,41 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/fantasy-zone-2-dx.spritefont
+
+#begin Fonts/fantasy-zone-2-dx.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/fantasy-zone-2-dx.spritefont
+
+#begin Fonts/fantasy-zone-2-dx.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/fantasy-zone-2-dx.spritefont
+
+#begin Fonts/Final-Fantasy.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Final-Fantasy.spritefont
+
+#begin Fonts/Fipps-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Fipps-Regular.spritefont
+
+#begin Fonts/Fipps-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Fipps-Regular.spritefont
 
 #begin Fonts/Fipps-Regular.spritefont
 /importer:FontDescriptionImporter
@@ -419,12 +1287,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/fs-pixel-sans-unicode-regular.spritefont
 
+#begin Fonts/fs-pixel-sans-unicode-regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/fs-pixel-sans-unicode-regular.spritefont
+
+#begin Fonts/fs-pixel-sans-unicode-regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/fs-pixel-sans-unicode-regular.spritefont
+
 #begin Fonts/Game Paused DEMO.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Game Paused DEMO.spritefont
+
+#begin Fonts/Game Paused DEMO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Game Paused DEMO.spritefont
+
+#begin Fonts/Game Paused DEMO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Game Paused DEMO.spritefont
+
+#begin Fonts/Gamer.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Gamer.spritefont
+
+#begin Fonts/Gamer.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Gamer.spritefont
 
 #begin Fonts/Gamer.spritefont
 /importer:FontDescriptionImporter
@@ -440,6 +1350,27 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/GNF.spritefont
 
+#begin Fonts/GNF.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GNF.spritefont
+
+#begin Fonts/GNF.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GNF.spritefont
+
+#begin Fonts/Grand9K Pixel.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Grand9K Pixel.spritefont
+
 #begin Fonts/GrapeSoda.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -447,12 +1378,75 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/GrapeSoda.spritefont
 
+#begin Fonts/GrapeSoda.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GrapeSoda.spritefont
+
+#begin Fonts/GrapeSoda.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GrapeSoda.spritefont
+
+#begin Fonts/Gridget.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Gridget.spritefont
+
 #begin Fonts/hachicro.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/hachicro.spritefont
+
+#begin Fonts/hachicro.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/hachicro.spritefont
+
+#begin Fonts/hachicro.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/hachicro.spritefont
+
+#begin Fonts/handwriting-draft_free-version.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/handwriting-draft_free-version.spritefont
+
+#begin Fonts/HomeRem.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/HomeRem.spritefont
+
+#begin Fonts/Hydrogen Whiskey.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Hydrogen Whiskey.spritefont
+
+#begin Fonts/Hydrogen Whiskey.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Hydrogen Whiskey.spritefont
 
 #begin Fonts/Hydrogen Whiskey.spritefont
 /importer:FontDescriptionImporter
@@ -468,12 +1462,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/joystix monospace.spritefont
 
+#begin Fonts/joystix monospace.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/joystix monospace.spritefont
+
+#begin Fonts/joystix monospace.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/joystix monospace.spritefont
+
 #begin Fonts/ka1.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ka1.spritefont
+
+#begin Fonts/ka1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ka1.spritefont
+
+#begin Fonts/ka1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ka1.spritefont
+
+#begin Fonts/Karma Future.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Karma Future.spritefont
+
+#begin Fonts/Karma Future.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Karma Future.spritefont
 
 #begin Fonts/Karma Future.spritefont
 /importer:FontDescriptionImporter
@@ -489,12 +1525,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Karma Suture.spritefont
 
+#begin Fonts/Karma Suture.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Karma Suture.spritefont
+
+#begin Fonts/Karma Suture.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Karma Suture.spritefont
+
 #begin Fonts/KiwiSoda.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/KiwiSoda.spritefont
+
+#begin Fonts/KiwiSoda.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/KiwiSoda.spritefont
+
+#begin Fonts/KiwiSoda.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/KiwiSoda.spritefont
+
+#begin Fonts/Leviathans.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Leviathans.spritefont
+
+#begin Fonts/Leviathans.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Leviathans.spritefont
 
 #begin Fonts/Leviathans.spritefont
 /importer:FontDescriptionImporter
@@ -510,12 +1588,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Extended Minecraft Bold Italic.spritefont
 
+#begin Fonts/mac's Extended Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Bold Italic.spritefont
+
+#begin Fonts/mac's Extended Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Bold Italic.spritefont
+
 #begin Fonts/mac's Extended Minecraft Bold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Extended Minecraft Bold.spritefont
+
+#begin Fonts/mac's Extended Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Bold.spritefont
+
+#begin Fonts/mac's Extended Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Bold.spritefont
+
+#begin Fonts/mac's Extended Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Italic.spritefont
+
+#begin Fonts/mac's Extended Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft Italic.spritefont
 
 #begin Fonts/mac's Extended Minecraft Italic.spritefont
 /importer:FontDescriptionImporter
@@ -531,12 +1651,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Extended Minecraft.spritefont
 
+#begin Fonts/mac's Extended Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft.spritefont
+
+#begin Fonts/mac's Extended Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Extended Minecraft.spritefont
+
 #begin Fonts/mac's Minecraft Bold Italic.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Minecraft Bold Italic.spritefont
+
+#begin Fonts/mac's Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Bold Italic.spritefont
+
+#begin Fonts/mac's Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Bold Italic.spritefont
+
+#begin Fonts/mac's Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Bold.spritefont
+
+#begin Fonts/mac's Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Bold.spritefont
 
 #begin Fonts/mac's Minecraft Bold.spritefont
 /importer:FontDescriptionImporter
@@ -552,12 +1714,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Minecraft Italic.spritefont
 
+#begin Fonts/mac's Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Italic.spritefont
+
+#begin Fonts/mac's Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft Italic.spritefont
+
 #begin Fonts/mac's Minecraft.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Minecraft.spritefont
+
+#begin Fonts/mac's Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft.spritefont
+
+#begin Fonts/mac's Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Minecraft.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Bold Italic.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft Bold Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Bold Italic.spritefont
 
 #begin Fonts/mac's Tweaked Minecraft Bold Italic.spritefont
 /importer:FontDescriptionImporter
@@ -573,12 +1777,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Tweaked Minecraft Bold.spritefont
 
+#begin Fonts/mac's Tweaked Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Bold.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Bold.spritefont
+
 #begin Fonts/mac's Tweaked Minecraft Italic.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/mac's Tweaked Minecraft Italic.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Italic.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft Italic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft Italic.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft.spritefont
+
+#begin Fonts/mac's Tweaked Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/mac's Tweaked Minecraft.spritefont
 
 #begin Fonts/mac's Tweaked Minecraft.spritefont
 /importer:FontDescriptionImporter
@@ -594,12 +1840,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Maesto-Regular_demo.spritefont
 
+#begin Fonts/Maesto-Regular_demo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Maesto-Regular_demo.spritefont
+
+#begin Fonts/Maesto-Regular_demo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Maesto-Regular_demo.spritefont
+
 #begin Fonts/Mario-Kart-DS.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Mario-Kart-DS.spritefont
+
+#begin Fonts/Mario-Kart-DS.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Mario-Kart-DS.spritefont
+
+#begin Fonts/Mario-Kart-DS.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Mario-Kart-DS.spritefont
+
+#begin Fonts/MedodicaRegular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MedodicaRegular.spritefont
+
+#begin Fonts/MedodicaRegular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MedodicaRegular.spritefont
 
 #begin Fonts/MedodicaRegular.spritefont
 /importer:FontDescriptionImporter
@@ -615,12 +1903,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Minecart LCD.spritefont
 
+#begin Fonts/Minecart LCD.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecart LCD.spritefont
+
+#begin Fonts/Minecart LCD.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecart LCD.spritefont
+
 #begin Fonts/Minecraft.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Minecraft.spritefont
+
+#begin Fonts/Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecraft.spritefont
+
+#begin Fonts/Minecraft.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecraft.spritefont
+
+#begin Fonts/Minecraftia-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecraftia-Regular.spritefont
+
+#begin Fonts/Minecraftia-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Minecraftia-Regular.spritefont
 
 #begin Fonts/Minecraftia-Regular.spritefont
 /importer:FontDescriptionImporter
@@ -636,12 +1966,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ModernDOS8x14.spritefont
 
+#begin Fonts/ModernDOS8x14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x14.spritefont
+
+#begin Fonts/ModernDOS8x14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x14.spritefont
+
 #begin Fonts/ModernDOS8x16.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ModernDOS8x16.spritefont
+
+#begin Fonts/ModernDOS8x16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x16.spritefont
+
+#begin Fonts/ModernDOS8x16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x16.spritefont
+
+#begin Fonts/ModernDOS8x8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x8.spritefont
+
+#begin Fonts/ModernDOS8x8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS8x8.spritefont
 
 #begin Fonts/ModernDOS8x8.spritefont
 /importer:FontDescriptionImporter
@@ -657,6 +2029,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ModernDOS9x14.spritefont
 
+#begin Fonts/ModernDOS9x14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS9x14.spritefont
+
+#begin Fonts/ModernDOS9x14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS9x14.spritefont
+
+#begin Fonts/ModernDOS9x16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS9x16.spritefont
+
+#begin Fonts/ModernDOS9x16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ModernDOS9x16.spritefont
+
 #begin Fonts/ModernDOS9x16.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -670,6 +2070,48 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/MySims Racing DS Large Font.spritefont
+
+#begin Fonts/MySims Racing DS Large Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MySims Racing DS Large Font.spritefont
+
+#begin Fonts/MySims Racing DS Large Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MySims Racing DS Large Font.spritefont
+
+#begin Fonts/Nasalization Rg.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Nasalization Rg.spritefont
+
+#begin Fonts/Neonstar.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Neonstar.spritefont
+
+#begin Fonts/NewGlitchDemoRegular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/NewGlitchDemoRegular.spritefont
+
+#begin Fonts/NewGlitchDemoRegular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/NewGlitchDemoRegular.spritefont
 
 #begin Fonts/NewGlitchDemoRegular.spritefont
 /importer:FontDescriptionImporter
@@ -685,6 +2127,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/nokiafc22.spritefont
 
+#begin Fonts/nokiafc22.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/nokiafc22.spritefont
+
+#begin Fonts/nokiafc22.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/nokiafc22.spritefont
+
+#begin Fonts/Perfect DOS VGA 437 Win.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Perfect DOS VGA 437 Win.spritefont
+
+#begin Fonts/Perfect DOS VGA 437 Win.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Perfect DOS VGA 437 Win.spritefont
+
 #begin Fonts/Perfect DOS VGA 437 Win.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -698,6 +2168,41 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Perfect DOS VGA 437.spritefont
+
+#begin Fonts/Perfect DOS VGA 437.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Perfect DOS VGA 437.spritefont
+
+#begin Fonts/Perfect DOS VGA 437.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Perfect DOS VGA 437.spritefont
+
+#begin Fonts/pixChicago.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixChicago.spritefont
+
+#begin Fonts/PIXEAB__.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PIXEAB__.spritefont
+
+#begin Fonts/PIXEAB__.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PIXEAB__.spritefont
 
 #begin Fonts/PIXEAB__.spritefont
 /importer:FontDescriptionImporter
@@ -713,12 +2218,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PIXEARG_.spritefont
 
+#begin Fonts/PIXEARG_.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PIXEARG_.spritefont
+
+#begin Fonts/PIXEARG_.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PIXEARG_.spritefont
+
 #begin Fonts/Pixel Game Extrude.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Pixel Game Extrude.spritefont
+
+#begin Fonts/Pixel Game Extrude.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixel Game Extrude.spritefont
+
+#begin Fonts/Pixel Game Extrude.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixel Game Extrude.spritefont
+
+#begin Fonts/Pixel Game.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixel Game.spritefont
+
+#begin Fonts/Pixel Game.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixel Game.spritefont
 
 #begin Fonts/Pixel Game.spritefont
 /importer:FontDescriptionImporter
@@ -734,12 +2281,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/pixel.spritefont
 
+#begin Fonts/pixel.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixel.spritefont
+
+#begin Fonts/pixel.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixel.spritefont
+
 #begin Fonts/pixel-arial-14.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/pixel-arial-14.spritefont
+
+#begin Fonts/pixel-arial-14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixel-arial-14.spritefont
+
+#begin Fonts/pixel-arial-14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixel-arial-14.spritefont
+
+#begin Fonts/Pixeled.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixeled.spritefont
+
+#begin Fonts/Pixeled.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixeled.spritefont
 
 #begin Fonts/Pixeled.spritefont
 /importer:FontDescriptionImporter
@@ -755,12 +2344,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Pixellari.spritefont
 
+#begin Fonts/Pixellari.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixellari.spritefont
+
+#begin Fonts/Pixellari.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixellari.spritefont
+
 #begin Fonts/PixelOperator.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperator.spritefont
+
+#begin Fonts/PixelOperator.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator.spritefont
+
+#begin Fonts/PixelOperator.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator.spritefont
+
+#begin Fonts/PixelOperator8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator8.spritefont
+
+#begin Fonts/PixelOperator8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator8.spritefont
 
 #begin Fonts/PixelOperator8.spritefont
 /importer:FontDescriptionImporter
@@ -776,12 +2407,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperator8-Bold.spritefont
 
+#begin Fonts/PixelOperator8-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator8-Bold.spritefont
+
+#begin Fonts/PixelOperator8-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator8-Bold.spritefont
+
 #begin Fonts/PixelOperator-Bold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperator-Bold.spritefont
+
+#begin Fonts/PixelOperator-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator-Bold.spritefont
+
+#begin Fonts/PixelOperator-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperator-Bold.spritefont
+
+#begin Fonts/PixelOperatorHB.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHB.spritefont
+
+#begin Fonts/PixelOperatorHB.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHB.spritefont
 
 #begin Fonts/PixelOperatorHB.spritefont
 /importer:FontDescriptionImporter
@@ -797,12 +2470,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorHB8.spritefont
 
+#begin Fonts/PixelOperatorHB8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHB8.spritefont
+
+#begin Fonts/PixelOperatorHB8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHB8.spritefont
+
 #begin Fonts/PixelOperatorHBSC.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorHBSC.spritefont
+
+#begin Fonts/PixelOperatorHBSC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHBSC.spritefont
+
+#begin Fonts/PixelOperatorHBSC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorHBSC.spritefont
+
+#begin Fonts/PixelOperatorMono.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono.spritefont
+
+#begin Fonts/PixelOperatorMono.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono.spritefont
 
 #begin Fonts/PixelOperatorMono.spritefont
 /importer:FontDescriptionImporter
@@ -818,12 +2533,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorMono8.spritefont
 
+#begin Fonts/PixelOperatorMono8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono8.spritefont
+
+#begin Fonts/PixelOperatorMono8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono8.spritefont
+
 #begin Fonts/PixelOperatorMono8-Bold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorMono8-Bold.spritefont
+
+#begin Fonts/PixelOperatorMono8-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono8-Bold.spritefont
+
+#begin Fonts/PixelOperatorMono8-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono8-Bold.spritefont
+
+#begin Fonts/PixelOperatorMono-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono-Bold.spritefont
+
+#begin Fonts/PixelOperatorMono-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMono-Bold.spritefont
 
 #begin Fonts/PixelOperatorMono-Bold.spritefont
 /importer:FontDescriptionImporter
@@ -839,12 +2596,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorMonoHB.spritefont
 
+#begin Fonts/PixelOperatorMonoHB.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMonoHB.spritefont
+
+#begin Fonts/PixelOperatorMonoHB.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMonoHB.spritefont
+
 #begin Fonts/PixelOperatorMonoHB8.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorMonoHB8.spritefont
+
+#begin Fonts/PixelOperatorMonoHB8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMonoHB8.spritefont
+
+#begin Fonts/PixelOperatorMonoHB8.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorMonoHB8.spritefont
+
+#begin Fonts/PixelOperatorSC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorSC.spritefont
+
+#begin Fonts/PixelOperatorSC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorSC.spritefont
 
 #begin Fonts/PixelOperatorSC.spritefont
 /importer:FontDescriptionImporter
@@ -860,12 +2659,61 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelOperatorSC-Bold.spritefont
 
+#begin Fonts/PixelOperatorSC-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorSC-Bold.spritefont
+
+#begin Fonts/PixelOperatorSC-Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelOperatorSC-Bold.spritefont
+
 #begin Fonts/PixelPurl.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PixelPurl.spritefont
+
+#begin Fonts/PixelPurl.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelPurl.spritefont
+
+#begin Fonts/PixelPurl.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PixelPurl.spritefont
+
+#begin Fonts/Pixeltype.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixeltype.spritefont
+
+#begin Fonts/pixely[1].spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixely[1].spritefont
+
+#begin Fonts/pixely[1].spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/pixely[1].spritefont
 
 #begin Fonts/pixely[1].spritefont
 /importer:FontDescriptionImporter
@@ -881,12 +2729,68 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Pixmachina DEMO.spritefont
 
+#begin Fonts/Pixmachina DEMO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixmachina DEMO.spritefont
+
+#begin Fonts/Pixmachina DEMO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixmachina DEMO.spritefont
+
+#begin Fonts/Pixolletta8px.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pixolletta8px.spritefont
+
+#begin Fonts/PLANK___.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PLANK___.spritefont
+
 #begin Fonts/PlayMeGames-Demo.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PlayMeGames-Demo.spritefont
+
+#begin Fonts/PlayMeGames-Demo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PlayMeGames-Demo.spritefont
+
+#begin Fonts/PlayMeGames-Demo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PlayMeGames-Demo.spritefont
+
+#begin Fonts/Pokemon Classic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pokemon Classic.spritefont
+
+#begin Fonts/Pokemon Classic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Pokemon Classic.spritefont
 
 #begin Fonts/Pokemon Classic.spritefont
 /importer:FontDescriptionImporter
@@ -902,12 +2806,82 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PressStart2P.spritefont
 
+#begin Fonts/PressStart2P.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PressStart2P.spritefont
+
+#begin Fonts/PressStart2P.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PressStart2P.spritefont
+
+#begin Fonts/ProductDesign.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ProductDesign.spritefont
+
+#begin Fonts/ProggyClean.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ProggyClean.spritefont
+
+#begin Fonts/ProggyCleanSZ.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ProggyCleanSZ.spritefont
+
+#begin Fonts/ProggyCleanSZBP.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ProggyCleanSZBP.spritefont
+
 #begin Fonts/PrStart.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/PrStart.spritefont
+
+#begin Fonts/PrStart.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PrStart.spritefont
+
+#begin Fonts/PrStart.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/PrStart.spritefont
+
+#begin Fonts/prstartk.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/prstartk.spritefont
+
+#begin Fonts/prstartk.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/prstartk.spritefont
 
 #begin Fonts/prstartk.spritefont
 /importer:FontDescriptionImporter
@@ -923,6 +2897,41 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/rainyhearts.spritefont
 
+#begin Fonts/rainyhearts.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/rainyhearts.spritefont
+
+#begin Fonts/rainyhearts.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/rainyhearts.spritefont
+
+#begin Fonts/Reactor7.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Reactor7.spritefont
+
+#begin Fonts/Retro Gaming.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Retro Gaming.spritefont
+
+#begin Fonts/Retro Gaming.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Retro Gaming.spritefont
+
 #begin Fonts/Retro Gaming.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -937,12 +2946,75 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/RetroByte.spritefont
 
+#begin Fonts/RetroByte.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/RetroByte.spritefont
+
+#begin Fonts/RetroByte.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/RetroByte.spritefont
+
+#begin Fonts/Retroville NC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Retroville NC.spritefont
+
 #begin Fonts/runescape_uf.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/runescape_uf.spritefont
+
+#begin Fonts/runescape_uf.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/runescape_uf.spritefont
+
+#begin Fonts/runescape_uf.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/runescape_uf.spritefont
+
+#begin Fonts/SadMachine.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SadMachine.spritefont
+
+#begin Fonts/Scrambled.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Scrambled.spritefont
+
+#begin Fonts/slkscr.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscr.spritefont
+
+#begin Fonts/slkscr.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscr.spritefont
 
 #begin Fonts/slkscr.spritefont
 /importer:FontDescriptionImporter
@@ -958,6 +3030,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/slkscrb.spritefont
 
+#begin Fonts/slkscrb.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscrb.spritefont
+
+#begin Fonts/slkscrb.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscrb.spritefont
+
+#begin Fonts/slkscre.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscre.spritefont
+
+#begin Fonts/slkscre.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscre.spritefont
+
 #begin Fonts/slkscre.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -972,12 +3072,103 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/slkscreb.spritefont
 
+#begin Fonts/slkscreb.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscreb.spritefont
+
+#begin Fonts/slkscreb.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/slkscreb.spritefont
+
+#begin Fonts/smallest_pixel-7.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/smallest_pixel-7.spritefont
+
+#begin Fonts/space age.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/space age.spritefont
+
+#begin Fonts/Speeed_PERSONAL_USE_ONLY.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Speeed_PERSONAL_USE_ONLY.spritefont
+
+#begin Fonts/Spritecoder_Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Spritecoder_Regular.spritefont
+
+#begin Fonts/Super-Mario-Bros--3.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Super-Mario-Bros--3.spritefont
+
 #begin Fonts/SUPER-VCR_MONO.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/SUPER-VCR_MONO.spritefont
+
+#begin Fonts/SUPER-VCR_MONO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SUPER-VCR_MONO.spritefont
+
+#begin Fonts/SUPER-VCR_MONO.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SUPER-VCR_MONO.spritefont
+
+#begin Fonts/Typo Draft Demo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Typo Draft Demo.spritefont
+
+#begin Fonts/UpheavalPro.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/UpheavalPro.spritefont
+
+#begin Fonts/upheavtt.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/upheavtt.spritefont
+
+#begin Fonts/upheavtt.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/upheavtt.spritefont
 
 #begin Fonts/upheavtt.spritefont
 /importer:FontDescriptionImporter
@@ -993,12 +3184,54 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Vermin Vibes 1989.spritefont
 
+#begin Fonts/Vermin Vibes 1989.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Vermin Vibes 1989.spritefont
+
+#begin Fonts/Vermin Vibes 1989.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Vermin Vibes 1989.spritefont
+
 #begin Fonts/visitor1.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/visitor1.spritefont
+
+#begin Fonts/visitor1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/visitor1.spritefont
+
+#begin Fonts/visitor1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/visitor1.spritefont
+
+#begin Fonts/visitor2.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/visitor2.spritefont
+
+#begin Fonts/visitor2.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/visitor2.spritefont
 
 #begin Fonts/visitor2.spritefont
 /importer:FontDescriptionImporter
@@ -1014,6 +3247,34 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/VT323-Regular.spritefont
 
+#begin Fonts/VT323-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/VT323-Regular.spritefont
+
+#begin Fonts/VT323-Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/VT323-Regular.spritefont
+
+#begin Fonts/W95FA.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/W95FA.spritefont
+
+#begin Fonts/W95FA.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/W95FA.spritefont
+
 #begin Fonts/W95FA.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -1028,10 +3289,45 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Windows Regular.spritefont
 
+#begin Fonts/Windows Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Windows Regular.spritefont
+
+#begin Fonts/Windows Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Windows Regular.spritefont
+
 #begin Fonts/yoster.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/yoster.spritefont
+
+#begin Fonts/yoster.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/yoster.spritefont
+
+#begin Fonts/yoster.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/yoster.spritefont
+
+#begin Fonts/zx-spectrum.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/zx-spectrum.spritefont
 
