@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grids", "Grids\Grids.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imgui", "Imgui\Imgui.csproj", "{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDS", "PDS\PDS.csproj", "{311FEB55-98FB-458A-9396-8C3DEE43B81E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{311FEB55-98FB-458A-9396-8C3DEE43B81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{311FEB55-98FB-458A-9396-8C3DEE43B81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{311FEB55-98FB-458A-9396-8C3DEE43B81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{311FEB55-98FB-458A-9396-8C3DEE43B81E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		SolutionGuid = {931AA365-2A64-470F-9CFF-AE4C18F1B370}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedContent\SharedContent.projitems*{311feb55-98fb-458a-9396-8c3dee43b81e}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{6e905087-1bc4-4f1f-b4a9-e412e412ba2f}*SharedItemsImports = 13
 		SharedContent\SharedContent.projitems*{aef24d62-3f2b-454f-b194-6c74b239cfb7}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{fd97d45b-b6aa-495e-bc4a-c4cefdbb3b3b}*SharedItemsImports = 5
