@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.ImGuiNet;
 using Shared.Components;
+using System.Collections.Generic;
 
 namespace _3D
 {
@@ -15,16 +16,38 @@ namespace _3D
 		FpsComponent fpsComponent;
 
 		// Terrain fields
-		VertexPositionColorNormal[] vertices;
-		int[] indices;
-		BasicEffect _effect;
+		float[,] heightmap;
+		VertexPositionColorNormal[] terrainVertices;
+		int[] terrainIndices;
+		Vector3[,] terrainNormals;
+		BasicEffect terrainEffect;
+		BasicEffect treeEffect;
 
 		// Camera
-		private Camera3D _camera;
+		Camera3D _camera;
 
 		// Terrain size
-		TerrainGenParameters TerrainGenParams { get; set; } = new();
-		TerrainMeshParameters TerrainMeshParams { get; set; } = new();
+		TerrainGenParameters _lastTerrainGenParams;
+		TerrainGenParameters TerrainGenParams { get; } = new();
+
+		TerrainMeshParameters _lastTerrainMeshParams;
+		TerrainMeshParameters TerrainMeshParams { get; } = new();
+
+		TreeGeneratorParameters _lastTreeGenParams;
+		TreeGeneratorParameters TreeGenParams { get; } = new();
+
+		List<TreeInstance> Trees = new();
+
+		// Lighting controls
+		Vector3 terrainSpecularColor = new(0.2f, 0.2f, 0.2f);
+		float terrainSpecularPower = 8f;
+		Vector3 treeSpecularColor = new(0.2f, 0.2f, 0.2f);
+		float treeSpecularPower = 8f;
+		Vector3 ambientLightColor = new(0.2f, 0.2f, 0.2f);
+		Vector3 terrainDiffuseColor = new(0.8f, 0.8f, 0.8f);
+		Vector3 terrainEmissiveColor = new(0.0f, 0.0f, 0.0f);
+		Vector3 treeDiffuseColor = new(0.8f, 0.8f, 0.8f);
+		Vector3 treeEmissiveColor = new(0.0f, 0.0f, 0.0f);
 
 		public Game1()
 		{
@@ -53,197 +76,39 @@ namespace _3D
 		{
 			_spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			GenerateTerrainMesh(GenerateSimplexHeightMap(TerrainGenParams));
-
-			_effect = new BasicEffect(GraphicsDevice)
+			terrainEffect = new BasicEffect(GraphicsDevice)
 			{
 				LightingEnabled = true,
 				TextureEnabled = false,
 				VertexColorEnabled = false
 			};
-			_effect.EnableDefaultLighting();
+			terrainEffect.EnableDefaultLighting();
+
+			treeEffect = new BasicEffect(GraphicsDevice)
+			{
+				LightingEnabled = true,
+				TextureEnabled = false,
+				VertexColorEnabled = false
+			};
+			treeEffect.EnableDefaultLighting();
 		}
 
-		private float[,] GenerateSimplexHeightMap(TerrainGenParameters tgParams)
+		void RegenerateMap(TerrainGenParameters terrainParams)
 		{
-			var noise = new SimplexNoise();
-			var map = new float[tgParams.Width, tgParams.Height];
+			heightmap = TerrainHeightmapGenerator.GenerateSimplexHeightMap(terrainParams);
+			TerrainMeshGenerator.GenerateTerrainMesh(
+				heightmap,
+				TerrainMeshParams,
+				out terrainVertices,
+				out terrainIndices,
+				out terrainNormals
+			);
 
-			// For normalization
-			float min = float.MaxValue, max = float.MinValue;
-
-			for (var z = 0; z < tgParams.Height; z++)
-			{
-				for (var x = 0; x < tgParams.Width; x++)
-				{
-					var frequency = tgParams.Frequency;
-					var amplitude = tgParams.Amplitude;
-					var noiseHeight = 0f;
-
-					for (var o = 0; o < tgParams.Octaves; o++)
-					{
-						var nx = x * tgParams.Scale * frequency;
-						var nz = z * tgParams.Scale * frequency;
-						var value = (float)noise.Evaluate(nx, nz);
-
-						noiseHeight += value * amplitude;
-
-						amplitude *= tgParams.Persistence;
-						frequency *= tgParams.Lacunarity;
-					}
-
-					// Track min/max for normalization
-					if (noiseHeight < min)
-					{
-						min = noiseHeight;
-					}
-
-					if (noiseHeight > max)
-					{
-						max = noiseHeight;
-					}
-
-					map[x, z] = noiseHeight;
-				}
-			}
-
-			// Normalize to [0,1] and apply heightScale
-			for (var z = 0; z < tgParams.Height; z++)
-			{
-				for (var x = 0; x < tgParams.Width; x++)
-				{
-					var norm = (map[x, z] - min) / (max - min);
-					map[x, z] = norm * tgParams.HeightScale;
-				}
-			}
-
-			return map;
+			RegenerateTrees(TreeGenParams);
 		}
 
-		private void GenerateTerrainMesh(float[,] heightMap)
-		{
-			var width = heightMap.GetLength(0);
-			var height = heightMap.GetLength(1);
-
-			var minHeight = float.MaxValue;
-			var maxHeight = float.MinValue;
-
-			for (var z = 0; z < height; z++)
-			{
-				for (var x = 0; x < width; x++)
-				{
-					var h = heightMap[x, z];
-					if (h < minHeight)
-					{
-						minHeight = h;
-					}
-
-					if (h > maxHeight)
-					{
-						maxHeight = h;
-					}
-				}
-			}
-
-			// Generate indices
-			indices = new int[(width - 1) * (height - 1) * 6];
-			var i = 0;
-			for (var z = 0; z < height - 1; z++)
-			{
-				for (var x = 0; x < width - 1; x++)
-				{
-					var topLeft = x + (z * width);
-					var topRight = x + 1 + (z * width);
-					var bottomLeft = x + ((z + 1) * width);
-					var bottomRight = x + 1 + ((z + 1) * width);
-
-					// Counter-clockwise winding:
-					indices[i++] = topLeft;
-					indices[i++] = topRight;
-					indices[i++] = bottomLeft;
-
-					indices[i++] = topRight;
-					indices[i++] = bottomRight;
-					indices[i++] = bottomLeft;
-				}
-			}
-
-			vertices = new VertexPositionColorNormal[width * height];
-
-			var xOffset = width / 2f;
-			var zOffset = height / 2f;
-
-			for (var z = 0; z < height; z++)
-			{
-				for (var x = 0; x < width; x++)
-				{
-					vertices[x + (z * width)] = new VertexPositionColorNormal(
-						new Vector3(x - xOffset, heightMap[x, z], z - zOffset),
-						Color.Magenta, // Temporary, will be recalculated below
-						Vector3.Up // Temporary, will be recalculated below
-					);
-				}
-			}
-
-			// Calculate normals
-			for (var v = 0; v < vertices.Length; v++)
-			{
-				vertices[v].Normal = Vector3.Zero;
-			}
-
-			for (var n = 0; n < indices.Length / 3; n++)
-			{
-				var i1 = indices[n * 3];
-				var i2 = indices[(n * 3) + 1];
-				var i3 = indices[(n * 3) + 2];
-
-				var side1 = vertices[i2].Position - vertices[i1].Position;
-				var side2 = vertices[i3].Position - vertices[i1].Position;
-				var normal = Vector3.Cross(side2, side1);
-
-				vertices[i1].Normal += normal;
-				vertices[i2].Normal += normal;
-				vertices[i3].Normal += normal;
-			}
-			for (var v = 0; v < vertices.Length; v++)
-			{
-				vertices[v].Normal.Normalize();
-			}
-
-			// Now, color if normal is steeper than cliff angle
-			var cliffAngle = MathHelper.ToRadians(90 - TerrainMeshParams.CliffAngle);
-
-			for (var v = 0; v < vertices.Length; v++)
-			{
-				ref var currentVert = ref vertices[v];
-				var t = (currentVert.Position.Y - minHeight) / (maxHeight - minHeight);
-				Color heightColour;
-				if (t < 0.2f)
-				{
-					heightColour = Color.Blue;
-				}
-				else if (t < 0.7f)
-				{
-					heightColour = Color.Green;
-				}
-				else if (t < 0.9f)
-				{
-					heightColour = Color.Gray;
-				}
-				else
-				{
-					heightColour = Color.White;
-				}
-
-				currentVert.Color = heightColour;
-
-				var dot = Vector3.Dot(currentVert.Normal, Vector3.Up);
-				if (dot < cliffAngle)
-				{
-					currentVert.Color = Color.Lerp(heightColour, Color.DarkGray, TerrainMeshParams.CliffAngleLerp);
-				}
-			}
-		}
+		void RegenerateTrees(TreeGeneratorParameters treeParams)
+			=> Trees = [.. TreeGenerator.GenerateTrees(heightmap, terrainNormals, treeParams)];
 
 		protected override void Update(GameTime gameTime)
 		{
@@ -255,13 +120,21 @@ namespace _3D
 			_camera.HandleInput(gameTime);
 
 			// update the mesh - super expensive
-			bool genParamsChanged = _lastTerrainGenParams == null || TerrainGenParamsChanged(TerrainGenParams, _lastTerrainGenParams);
-			bool meshParamsChanged = _lastTerrainMeshParams == null || TerrainMeshParamsChanged(TerrainMeshParams, _lastTerrainMeshParams);
+			var genParamsChanged = _lastTerrainGenParams == null || TerrainGenParamsChanged(TerrainGenParams, _lastTerrainGenParams);
+			var meshParamsChanged = _lastTerrainMeshParams == null || TerrainMeshParamsChanged(TerrainMeshParams, _lastTerrainMeshParams);
+			var treeParamsChanged = _lastTreeGenParams == null || TreeGenParamsChanged(TreeGenParams, _lastTreeGenParams);
+
 			if (genParamsChanged || meshParamsChanged)
 			{
-				GenerateTerrainMesh(GenerateSimplexHeightMap(TerrainGenParams));
+				RegenerateMap(TerrainGenParams);
 				_lastTerrainGenParams = CloneTerrainGenParams(TerrainGenParams);
 				_lastTerrainMeshParams = CloneTerrainMeshParams(TerrainMeshParams);
+				_lastTreeGenParams = CloneTreeGenParams(TreeGenParams); // keep in sync
+			}
+			else if (treeParamsChanged)
+			{
+				RegenerateTrees(TreeGenParams);
+				_lastTreeGenParams = CloneTreeGenParams(TreeGenParams);
 			}
 
 			base.Update(gameTime);
@@ -276,25 +149,73 @@ namespace _3D
 
 			GraphicsDevice.Clear(Color.SteelBlue);
 
-			_effect.View = _camera.ViewMatrix;
-			_effect.Projection = _camera.ProjectionMatrix;
-			_effect.World = Matrix.Identity;
-			_effect.VertexColorEnabled = true;
+			terrainEffect.View = _camera.ViewMatrix;
+			terrainEffect.Projection = _camera.ProjectionMatrix;
+			terrainEffect.World = Matrix.Identity;
+			terrainEffect.VertexColorEnabled = true;
+			terrainEffect.SpecularColor = new Vector3(terrainSpecularColor.X, terrainSpecularColor.Y, terrainSpecularColor.Z);
+			terrainEffect.SpecularPower = terrainSpecularPower;
+			terrainEffect.AmbientLightColor = ambientLightColor;
+			terrainEffect.DiffuseColor = terrainDiffuseColor;
+			terrainEffect.EmissiveColor = terrainEmissiveColor;
 
-			foreach (var pass in _effect.CurrentTechnique.Passes)
+			treeEffect.View = _camera.ViewMatrix;
+			treeEffect.Projection = _camera.ProjectionMatrix;
+			treeEffect.World = Matrix.Identity;
+			treeEffect.VertexColorEnabled = true;
+			treeEffect.SpecularColor = new Vector3(treeSpecularColor.X, treeSpecularColor.Y, treeSpecularColor.Z);
+			treeEffect.SpecularPower = treeSpecularPower;
+			treeEffect.AmbientLightColor = ambientLightColor;
+			treeEffect.DiffuseColor = treeDiffuseColor;
+			treeEffect.EmissiveColor = treeEmissiveColor;
+
+			DrawTerrain();
+			DrawTrees();
+			DrawAxes();
+			DrawImGui(gameTime);
+
+			base.Draw(gameTime);
+		}
+
+		private void DrawTerrain()
+		{
+			foreach (var pass in terrainEffect.CurrentTechnique.Passes)
 			{
 				pass.Apply();
 				GraphicsDevice.DrawUserIndexedPrimitives(
 					PrimitiveType.TriangleList,
-					vertices,
+					terrainVertices,
 					0,
-					vertices.Length,
-					indices,
+					terrainVertices.Length,
+					terrainIndices,
 					0,
-					indices.Length / 3
+					terrainIndices.Length / 3
 				);
 			}
+		}
 
+		private void DrawTrees()
+		{
+			foreach (var pass in treeEffect.CurrentTechnique.Passes)
+			{
+				pass.Apply();
+				foreach (var tree in Trees)
+				{
+					GraphicsDevice.DrawUserIndexedPrimitives(
+						PrimitiveType.TriangleList,
+						tree.Mesh.Vertices,
+						0,
+						tree.Mesh.Vertices.Length,
+						tree.Mesh.Indices,
+						0,
+						tree.Mesh.Indices.Length / 3
+					);
+				}
+			}
+		}
+
+		private void DrawAxes()
+		{
 			// --- Draw world axes ---
 			var axisEffect = new BasicEffect(GraphicsDevice)
 			{
@@ -330,13 +251,9 @@ namespace _3D
 					3 // 3 lines
 				);
 			}
-
-			DrawImGui(gameTime);
-
-			base.Draw(gameTime);
 		}
 
-		private void DrawImGui(GameTime gameTime)
+		void DrawImGui(GameTime gameTime)
 		{
 			GuiRenderer.BeginLayout(gameTime);
 
@@ -429,14 +346,147 @@ namespace _3D
 					}
 				}
 
+				// In DrawImGui, replace ImGui.ColorEdit3 calls to use System.Numerics.Vector3
+				if (ImGui.CollapsingHeader("Lighting", ImGuiTreeNodeFlags.DefaultOpen))
+				{
+					// --- Terrain Lighting ---
+					var numericsTerrainSpecularColor = ToNumerics(terrainSpecularColor);
+					if (ImGui.ColorEdit3("Terrain Specular", ref numericsTerrainSpecularColor))
+					{
+						terrainSpecularColor = new Vector3(numericsTerrainSpecularColor.X, numericsTerrainSpecularColor.Y, numericsTerrainSpecularColor.Z);
+					}
+					ImGui.SliderFloat("Terrain Specular Power", ref terrainSpecularPower, 1f, 64f);
+
+					var numericsTerrainDiffuseColor = ToNumerics(terrainDiffuseColor);
+					if (ImGui.ColorEdit3("Terrain Diffuse", ref numericsTerrainDiffuseColor))
+					{
+						terrainDiffuseColor = new Vector3(numericsTerrainDiffuseColor.X, numericsTerrainDiffuseColor.Y, numericsTerrainDiffuseColor.Z);
+					}
+
+					var numericsTerrainEmissiveColor = ToNumerics(terrainEmissiveColor);
+					if (ImGui.ColorEdit3("Terrain Emissive", ref numericsTerrainEmissiveColor))
+					{
+						terrainEmissiveColor = new Vector3(numericsTerrainEmissiveColor.X, numericsTerrainEmissiveColor.Y, numericsTerrainEmissiveColor.Z);
+					}
+
+					// --- Tree Lighting ---
+					var numericsTreeSpecularColor = ToNumerics(treeSpecularColor);
+					if (ImGui.ColorEdit3("Tree Specular", ref numericsTreeSpecularColor))
+					{
+						treeSpecularColor = new Vector3(numericsTreeSpecularColor.X, numericsTreeSpecularColor.Y, numericsTreeSpecularColor.Z);
+					}
+					ImGui.SliderFloat("Tree Specular Power", ref treeSpecularPower, 1f, 64f);
+
+					var numericsTreeDiffuseColor = ToNumerics(treeDiffuseColor);
+					if (ImGui.ColorEdit3("Tree Diffuse", ref numericsTreeDiffuseColor))
+					{
+						treeDiffuseColor = new Vector3(numericsTreeDiffuseColor.X, numericsTreeDiffuseColor.Y, numericsTreeDiffuseColor.Z);
+					}
+
+					var numericsTreeEmissiveColor = ToNumerics(treeEmissiveColor);
+					if (ImGui.ColorEdit3("Tree Emissive", ref numericsTreeEmissiveColor))
+					{
+						treeEmissiveColor = new Vector3(numericsTreeEmissiveColor.X, numericsTreeEmissiveColor.Y, numericsTreeEmissiveColor.Z);
+					}
+
+					// --- Ambient ---
+					var numericsAmbientLightColor = ToNumerics(ambientLightColor);
+					if (ImGui.ColorEdit3("Ambient Light", ref numericsAmbientLightColor))
+					{
+						ambientLightColor = new Vector3(numericsAmbientLightColor.X, numericsAmbientLightColor.Y, numericsAmbientLightColor.Z);
+					}
+				}
+
+				// --- Tree Generation ---
+				if (ImGui.CollapsingHeader("Tree Generation", ImGuiTreeNodeFlags.DefaultOpen))
+				{
+					var treeCount = TreeGenParams.TreeCount;
+					if (ImGui.SliderInt("Tree Count", ref treeCount, 0, 10000))
+					{
+						TreeGenParams.TreeCount = treeCount;
+					}
+
+					var minH = TreeGenParams.TreeHeightLimitMin;
+					var maxH = TreeGenParams.TreeHeightLimitMax;
+					if (ImGui.SliderFloat("Tree Height Min", ref minH, 0f, 256f))
+					{
+						TreeGenParams.TreeHeightLimitMin = minH;
+					}
+
+					if (ImGui.SliderFloat("Tree Height Max", ref maxH, 0f, 256f))
+					{
+						TreeGenParams.TreeHeightLimitMax = maxH;
+					}
+
+					var trunkBaseMin = TreeGenParams.TrunkBaseRadiusMin;
+					var trunkBaseMax = TreeGenParams.TrunkBaseRadiusMax;
+					if (ImGui.SliderFloat("Trunk Base Radius Min", ref trunkBaseMin, 0.01f, 2f))
+					{
+						TreeGenParams.TrunkBaseRadiusMin = trunkBaseMin;
+					}
+
+					if (ImGui.SliderFloat("Trunk Base Radius Max", ref trunkBaseMax, 0.01f, 2f))
+					{
+						TreeGenParams.TrunkBaseRadiusMax = trunkBaseMax;
+					}
+
+					var trunkSegMin = TreeGenParams.TrunkSegmentsMin;
+					var trunkSegMax = TreeGenParams.TrunkSegmentsMax;
+					if (ImGui.SliderInt("Trunk Segments Min", ref trunkSegMin, 3, 32))
+					{
+						TreeGenParams.TrunkSegmentsMin = trunkSegMin;
+					}
+
+					if (ImGui.SliderInt("Trunk Segments Max", ref trunkSegMax, 3, 32))
+					{
+						TreeGenParams.TrunkSegmentsMax = trunkSegMax;
+					}
+
+					var trunkRingMin = TreeGenParams.TrunkRingsMin;
+					var trunkRingMax = TreeGenParams.TrunkRingsMax;
+					if (ImGui.SliderInt("Trunk Rings Min", ref trunkRingMin, 1, 32))
+					{
+						TreeGenParams.TrunkRingsMin = trunkRingMin;
+					}
+
+					if (ImGui.SliderInt("Trunk Rings Max", ref trunkRingMax, 1, 32))
+					{
+						TreeGenParams.TrunkRingsMax = trunkRingMax;
+					}
+
+					// --- Add these for BranchCount and LeafCount ---
+					var branchCountMin = TreeGenParams.BranchCountMin;
+					var branchCountMax = TreeGenParams.BranchCountMax;
+					if (ImGui.SliderInt("Branch Count Min", ref branchCountMin, 1, 64))
+					{
+						TreeGenParams.BranchCountMin = branchCountMin;
+					}
+
+					if (ImGui.SliderInt("Branch Count Max", ref branchCountMax, 1, 64))
+					{
+						TreeGenParams.BranchCountMax = branchCountMax;
+					}
+
+					var leafCountMin = TreeGenParams.LeafCountMin;
+					var leafCountMax = TreeGenParams.LeafCountMax;
+					if (ImGui.SliderInt("Leaf Count Min", ref leafCountMin, 1, 128))
+					{
+						TreeGenParams.LeafCountMin = leafCountMin;
+					}
+
+					if (ImGui.SliderInt("Leaf Count Max", ref leafCountMax, 1, 128))
+					{
+						TreeGenParams.LeafCountMax = leafCountMax;
+					}
+				}
+
 				ImGui.End();
 			}
 
 			GuiRenderer.EndLayout();
 		}
 
-		// Add this helper method to compare TerrainGenParameters
-		private bool TerrainGenParamsChanged(TerrainGenParameters a, TerrainGenParameters b)
+		static bool TerrainGenParamsChanged(TerrainGenParameters a, TerrainGenParameters b)
 		{
 			if (a == null || b == null)
 			{
@@ -454,8 +504,7 @@ namespace _3D
 				   a.Lacunarity != b.Lacunarity;
 		}
 
-		// Add this helper method to compare TerrainMeshParameters
-		private bool TerrainMeshParamsChanged(TerrainMeshParameters a, TerrainMeshParameters b)
+		static bool TerrainMeshParamsChanged(TerrainMeshParameters a, TerrainMeshParameters b)
 		{
 			if (a == null || b == null)
 			{
@@ -465,8 +514,7 @@ namespace _3D
 			return a.CliffAngle != b.CliffAngle || a.CliffAngleLerp != b.CliffAngleLerp;
 		}
 
-		// Add this helper to clone TerrainMeshParameters
-		private TerrainMeshParameters CloneTerrainMeshParams(TerrainMeshParameters src)
+		static TerrainMeshParameters CloneTerrainMeshParams(TerrainMeshParameters src)
 		{
 			return new TerrainMeshParameters
 			{
@@ -475,11 +523,7 @@ namespace _3D
 			};
 		}
 
-		// Add this field to your Game1 class:
-		private TerrainMeshParameters _lastTerrainMeshParams = null;
-
-		// Add this helper to clone TerrainGenParameters
-		private TerrainGenParameters CloneTerrainGenParams(TerrainGenParameters src)
+		static TerrainGenParameters CloneTerrainGenParams(TerrainGenParameters src)
 		{
 			return new TerrainGenParameters
 			{
@@ -495,7 +539,49 @@ namespace _3D
 			};
 		}
 
-		// Add this field to your Game1 class:
-		private TerrainGenParameters _lastTerrainGenParams = null;
+		static bool TreeGenParamsChanged(TreeGeneratorParameters a, TreeGeneratorParameters b)
+		{
+			if (a == null || b == null)
+			{
+				return true;
+			}
+
+			return a.TreeCount != b.TreeCount ||
+				a.TreeHeightLimitMin != b.TreeHeightLimitMin ||
+				a.TreeHeightLimitMax != b.TreeHeightLimitMax ||
+				a.TrunkBaseRadiusMin != b.TrunkBaseRadiusMin ||
+				a.TrunkBaseRadiusMax != b.TrunkBaseRadiusMax ||
+				a.TrunkSegmentsMin != b.TrunkSegmentsMin ||
+				a.TrunkSegmentsMax != b.TrunkSegmentsMax ||
+				a.TrunkRingsMin != b.TrunkRingsMin ||
+				a.TrunkRingsMax != b.TrunkRingsMax ||
+				a.BranchCountMin != b.BranchCountMin ||
+				a.BranchCountMax != b.BranchCountMax ||
+				a.LeafCountMin != b.LeafCountMin ||
+				a.LeafCountMax != b.LeafCountMax;
+		}
+
+		static TreeGeneratorParameters CloneTreeGenParams(TreeGeneratorParameters src)
+		{
+			return new TreeGeneratorParameters
+			{
+				TreeCount = src.TreeCount,
+				TreeHeightLimitMin = src.TreeHeightLimitMin,
+				TreeHeightLimitMax = src.TreeHeightLimitMax,
+				TrunkBaseRadiusMin = src.TrunkBaseRadiusMin,
+				TrunkBaseRadiusMax = src.TrunkBaseRadiusMax,
+				TrunkSegmentsMin = src.TrunkSegmentsMin,
+				TrunkSegmentsMax = src.TrunkSegmentsMax,
+				TrunkRingsMin = src.TrunkRingsMin,
+				TrunkRingsMax = src.TrunkRingsMax,
+				BranchCountMin = src.BranchCountMin,
+				BranchCountMax = src.BranchCountMax,
+				LeafCountMin = src.LeafCountMin,
+				LeafCountMax = src.LeafCountMax
+			};
+		}
+
+		private static System.Numerics.Vector3 ToNumerics(Vector3 v)
+			=> new System.Numerics.Vector3(v.X, v.Y, v.Z);
 	}
 }
