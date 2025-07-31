@@ -35,19 +35,23 @@ namespace PDS
 
 	public class Game1 : Game
 	{
-		private GraphicsDeviceManager _graphics;
+		private readonly GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
 
 		private List<MaterialPoint> _points;
-		private DelaunatorSharp.Delaunator delaunator;
+		private Delaunator delaunator;
 
-		private int _screenWidth = 1920;
-		private int _screenHeight = 1080;
+		private readonly int _screenWidth = 1920;
+		private readonly int _screenHeight = 1080;
 
 		// Player fields
 		private Vector2 _playerPosition;
-		private float _playerSpeed = 200f; // pixels per second
-		private int _playerSize = 16;
+		private Vector2 _playerVelocity; // <-- Add this
+		private readonly float _playerSpeed = 200f; // pixels per second
+		private readonly int _playerSize = 16;
+		private readonly float _gravity = 800f; // pixels per second squared
+		private bool _isOnGround = false; // <-- Ground check
+		private const int PlayerCollisionMargin = 2;
 
 		private MouseState _previousMouseState;
 
@@ -66,12 +70,22 @@ namespace PDS
 			// Assign random material for demonstration
 			var random = new Random();
 			_points = PoissonDiscSampler.GeneratePoints(20, _screenWidth, _screenHeight, 30)
-				.ConvertAll(p => new MaterialPoint(p, (MaterialType)random.Next(Enum.GetValues<MaterialType>().Length)));
+				.ConvertAll(p =>
+				{
+					var material = MaterialType.Air;
+					if (p.Y > 500)
+					{
+						// 'underground'
+						material = (MaterialType)random.Next(Enum.GetValues<MaterialType>().Length - 1) + 1;
+					}
+					return new MaterialPoint(p, material);
+				});
 
 			var dPoints = _points.Select(x => new DelaunatorSharp.Point((int)x.Position.X, (int)x.Position.Y) as IPoint);
 			delaunator = new Delaunator([.. dPoints]);
 
-			_playerPosition = new Vector2(_screenWidth / 2, _screenHeight / 2);
+			_playerPosition = new Vector2(_screenWidth / 2, _screenHeight / 4);
+			_playerVelocity = Vector2.Zero; // <-- Initialize velocity
 
 			_previousMouseState = Mouse.GetState();
 
@@ -90,7 +104,9 @@ namespace PDS
 				Exit();
 			}
 
-			// Player movement
+			float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+			// Player movement (horizontal only)
 			var state = Keyboard.GetState();
 			var movement = Vector2.Zero;
 
@@ -98,56 +114,119 @@ namespace PDS
 			{
 				movement.X -= 1;
 			}
-
 			if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
 			{
 				movement.X += 1;
 			}
 
-			if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W))
+			// Apply horizontal movement to velocity
+			_playerVelocity.X = movement.X * _playerSpeed;
+
+			// Apply gravity to vertical velocity
+			_playerVelocity.Y += _gravity * dt;
+
+			// Jump logic
+			if (_isOnGround && state.IsKeyDown(Keys.Space))
 			{
-				movement.Y -= 1;
+				_playerVelocity.Y = -400f; // Jump impulse (tweak as needed)
+				_isOnGround = false;
 			}
 
-			if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
+			Vector2 newPosition = _playerPosition;
+
+			// --- Horizontal movement and collision ---
+			newPosition.X += _playerVelocity.X * dt;
+			Rectangle playerRectX = new Rectangle(
+				(int)newPosition.X + PlayerCollisionMargin,
+				(int)_playerPosition.Y + PlayerCollisionMargin,
+				_playerSize - PlayerCollisionMargin * 2,
+				_playerSize - PlayerCollisionMargin * 2);
+
+			bool collidedX = false;
+			delaunator.ForEachVoronoiCell(cell =>
 			{
-				movement.Y += 1;
+				var matPoint = _points[cell.Index];
+				if (matPoint.Material == MaterialType.Air)
+					return;
+				var polyPoints = cell.Points.Select(x => new Vector2((float)x.X, (float)x.Y)).ToArray();
+				if (polyPoints.Length < 3)
+					return;
+				if (PolygonIntersectsRectangle(polyPoints, playerRectX))
+					collidedX = true;
+			});
+			if (collidedX)
+			{
+				newPosition.X = _playerPosition.X; // Cancel horizontal movement
+				_playerVelocity.X = 0;
 			}
 
-			if (movement != Vector2.Zero)
-			{
-				movement.Normalize();
-				_playerPosition += movement * _playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			// --- Vertical movement and collision ---
+			newPosition.Y += _playerVelocity.Y * dt;
+			Rectangle playerRectY = new Rectangle(
+				(int)newPosition.X + PlayerCollisionMargin,
+				(int)newPosition.Y + PlayerCollisionMargin,
+				_playerSize - PlayerCollisionMargin * 2,
+				_playerSize - PlayerCollisionMargin * 2);
 
-				_playerPosition.X = Math.Clamp(_playerPosition.X, 0, _screenWidth - _playerSize);
-				_playerPosition.Y = Math.Clamp(_playerPosition.Y, 0, _screenHeight - _playerSize);
+			bool collidedY = false;
+			bool onGround = false;
+			delaunator.ForEachVoronoiCell(cell =>
+			{
+				var matPoint = _points[cell.Index];
+				if (matPoint.Material == MaterialType.Air)
+					return;
+				var polyPoints = cell.Points.Select(x => new Vector2((float)x.X, (float)x.Y)).ToArray();
+				if (polyPoints.Length < 3)
+					return;
+				if (PolygonIntersectsRectangle(polyPoints, playerRectY))
+				{
+					collidedY = true;
+					// Check if the player is landing on top of the cell
+					if (_playerVelocity.Y >= 0)
+						onGround = true;
+				}
+			});
+			if (collidedY)
+			{
+				newPosition.Y = _playerPosition.Y; // Cancel vertical movement
+				_playerVelocity.Y = 0;
 			}
 
-			// Mouse click detection
+			// Clamp player to screen bounds (ground collision)
+			if (newPosition.Y > _screenHeight - _playerSize)
+			{
+				newPosition.Y = _screenHeight - _playerSize;
+				_playerVelocity.Y = 0;
+				onGround = true;
+			}
+			if (newPosition.X < 0)
+				newPosition.X = 0;
+			if (newPosition.X > _screenWidth - _playerSize)
+				newPosition.X = _screenWidth - _playerSize;
+
+			_playerPosition = newPosition;
+			_isOnGround = onGround || (_playerPosition.Y >= _screenHeight - _playerSize);
+
+			// Mouse click detection (unchanged)
 			var mouseState = Mouse.GetState();
 			if (mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
 			{
 				const int distanceToClick = 20;
-				// Check for nearby point
-				//var pointToRemove = _points.FirstOrDefault(p => Vector2.Distance(_playerPosition, p.Position) <= distanceToClick);
 				var pointToRemove = _points.FirstOrDefault(p => Vector2.Distance(mouseState.Position.ToVector2(), p.Position) <= distanceToClick);
 
 				if (!pointToRemove.Equals(default(MaterialPoint)))
 				{
 					_points.Remove(pointToRemove);
 
-					// Recompute Delaunay
 					var dPoints = _points.Select(x => new DelaunatorSharp.Point((int)x.Position.X, (int)x.Position.Y) as IPoint);
 					delaunator = new Delaunator([.. dPoints]);
 				}
 			}
 			else if (mouseState.RightButton == ButtonState.Pressed && _previousMouseState.RightButton == ButtonState.Released)
 			{
-				// Add a new point with a random material
 				var random = new Random();
 				_points.Add(new MaterialPoint(mouseState.Position.ToVector2(), (MaterialType)random.Next(Enum.GetValues<MaterialType>().Length)));
 
-				// Recompute Delaunay
 				var dPoints = _points.Select(x => new DelaunatorSharp.Point((int)x.Position.X, (int)x.Position.Y) as IPoint);
 				delaunator = new Delaunator([.. dPoints]);
 			}
@@ -233,7 +312,7 @@ namespace PDS
 
 				var polyPoints = cell.Points.Select(x => new Vector2((float)x.X, (float)x.Y)).ToArray();
 				var polygon = new MonoGame.Extended.Shapes.Polygon([.. polyPoints]);
-				_spriteBatch.DrawPolygon(Vector2.Zero, polygon, color, 2);
+				_spriteBatch.DrawPolygon(Vector2.Zero, polygon, new Color(0f, 0f, 0f, 0.1f), 1f);
 			});
 
 			// Draw PDS points with color based on material
@@ -245,7 +324,7 @@ namespace PDS
 			}
 
 			// Draw player
-			//_spriteBatch.FillRectangle(new Rectangle((int)_playerPosition.X, (int)_playerPosition.Y, _playerSize, _playerSize), Color.LimeGreen);
+			_spriteBatch.FillRectangle(new Rectangle((int)_playerPosition.X, (int)_playerPosition.Y, _playerSize, _playerSize), Color.LimeGreen);
 
 			_spriteBatch.End();
 
@@ -256,7 +335,7 @@ namespace PDS
 		{
 			return materialType switch
 			{
-				MaterialType.Air => Color.LightGray,
+				MaterialType.Air => Color.LightBlue,
 				MaterialType.Grass => Color.Green,
 				MaterialType.Rock => Color.Gray,
 				MaterialType.Sand => Color.Yellow,
@@ -264,6 +343,83 @@ namespace PDS
 				MaterialType.Iron => Color.Orange,
 				_ => Color.Black
 			};
+		}
+
+		//private static bool PolygonIntersectsRectangle(Vector2[] polygon, Rectangle rect)
+		//{
+		//	if (polygon.Length < 3)
+		//		return false; // Not a polygon
+		//					  // Check if any vertex of the polygon is inside the rectangle
+		//	foreach (var vertex in polygon)
+		//	{
+		//		if (rect.Contains(vertex))
+		//			return true;
+		//	}
+		//	// Check if any edge of the polygon intersects with the rectangle edges
+		//	for (int i = 0; i < polygon.Length; i++)
+		//	{
+		//		Vector2 p1 = polygon[i];
+		//		Vector2 p2 = polygon[(i + 1) % polygon.Length];
+		//		if (LineIntersectsRectangle(p1, p2, rect))
+		//			return true;
+		//	}
+		//	return false; // No intersection found
+		//}
+
+		// old
+		private static bool PolygonIntersectsRectangle(Vector2[] polygon, Rectangle rect)
+		{
+			// Convert rectangle to polygon
+			Vector2[] rectVerts = new Vector2[]
+			{
+				new Vector2(rect.Left, rect.Top),
+				new Vector2(rect.Right, rect.Top),
+				new Vector2(rect.Right, rect.Bottom),
+				new Vector2(rect.Left, rect.Bottom)
+			};
+
+			// Check for overlap using SAT (Separating Axis Theorem)
+			return PolygonIntersectsPolygon(polygon, rectVerts);
+		}
+
+		private static bool PolygonIntersectsPolygon(Vector2[] polyA, Vector2[] polyB)
+		{
+			// Check all edges of both polygons
+			foreach (var polygon in new[] { polyA, polyB })
+			{
+				for (int i = 0; i < polygon.Length; i++)
+				{
+					// Get the current edge
+					Vector2 p1 = polygon[i];
+					Vector2 p2 = polygon[(i + 1) % polygon.Length];
+
+					// Get the axis perpendicular to the edge
+					Vector2 axis = new Vector2(-(p2.Y - p1.Y), p2.X - p1.X);
+					axis.Normalize();
+
+					// Project both polygons onto the axis
+					float minA, maxA, minB, maxB;
+					ProjectPolygon(axis, polyA, out minA, out maxA);
+					ProjectPolygon(axis, polyB, out minB, out maxB);
+
+					// Check for overlap
+					if (maxA < minB || maxB < minA)
+						return false; // No collision
+				}
+			}
+			return true; // Collision on all axes
+		}
+
+		private static void ProjectPolygon(Vector2 axis, Vector2[] polygon, out float min, out float max)
+		{
+			float dot = Vector2.Dot(axis, polygon[0]);
+			min = max = dot;
+			for (int i = 1; i < polygon.Length; i++)
+			{
+				dot = Vector2.Dot(axis, polygon[i]);
+				if (dot < min) min = dot;
+				if (dot > max) max = dot;
+			}
 		}
 	}
 }
