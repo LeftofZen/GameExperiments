@@ -18,13 +18,14 @@ namespace PDS
 		Rock,
 		Sand,
 		Gold,
-		Iron
+		Iron,
+		Coal
 	}
 
-	public struct MaterialPoint
+	public class MaterialPoint
 	{
-		public Vector2 Position;
-		public MaterialType Material;
+		public Vector2 Position { get; set; }
+		public MaterialType Material { get; set; }
 
 		public MaterialPoint(Vector2 position, MaterialType material)
 		{
@@ -89,6 +90,9 @@ namespace PDS
 
 			_previousMouseState = Mouse.GetState();
 
+			//_points[0].Position = new Vector2(100, 100);
+			//_points[0].Material = MaterialType.Air;
+
 			base.Initialize();
 		}
 
@@ -128,7 +132,7 @@ namespace PDS
 			// Jump logic
 			if (_isOnGround && state.IsKeyDown(Keys.Space))
 			{
-				_playerVelocity.Y = -400f; // Jump impulse (tweak as needed)
+				_playerVelocity.Y = -200f; // Jump impulse (tweak as needed)
 				_isOnGround = false;
 			}
 
@@ -211,12 +215,22 @@ namespace PDS
 			var mouseState = Mouse.GetState();
 			if (mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
 			{
-				const int distanceToClick = 20;
-				var pointToRemove = _points.FirstOrDefault(p => Vector2.Distance(mouseState.Position.ToVector2(), p.Position) <= distanceToClick);
+				Vector2 mousePos = mouseState.Position.ToVector2();
+				int cellToRemove = -1;
 
-				if (!pointToRemove.Equals(default(MaterialPoint)))
+				delaunator.ForEachVoronoiCell(cell =>
 				{
-					_points.Remove(pointToRemove);
+					var polyPoints = cell.Points.Select(x => new Vector2((float)x.X, (float)x.Y)).ToArray();
+					if (polyPoints.Length >= 3 && PointInPolygon(mousePos, polyPoints))
+					{
+						cellToRemove = cell.Index;
+					}
+				});
+
+				if (cellToRemove >= 0 && cellToRemove < _points.Count)
+				{
+					//_points.RemoveAt(cellToRemove);
+					_points[cellToRemove].Material = MaterialType.Air; // Set to air instead of removing
 
 					var dPoints = _points.Select(x => new DelaunatorSharp.Point((int)x.Position.X, (int)x.Position.Y) as IPoint);
 					delaunator = new Delaunator([.. dPoints]);
@@ -324,7 +338,8 @@ namespace PDS
 			}
 
 			// Draw player
-			_spriteBatch.FillRectangle(new Rectangle((int)_playerPosition.X, (int)_playerPosition.Y, _playerSize, _playerSize), Color.LimeGreen);
+			_spriteBatch.FillRectangle(new Rectangle((int)_playerPosition.X, (int)_playerPosition.Y, _playerSize, _playerSize), Color.Red);
+			_spriteBatch.DrawRectangle(new Rectangle((int)_playerPosition.X, (int)_playerPosition.Y, _playerSize, _playerSize), Color.Black);
 
 			_spriteBatch.End();
 
@@ -337,11 +352,12 @@ namespace PDS
 			{
 				MaterialType.Air => Color.LightBlue,
 				MaterialType.Grass => Color.Green,
-				MaterialType.Rock => Color.Gray,
+				MaterialType.Rock => Color.DarkGray,
 				MaterialType.Sand => Color.Yellow,
 				MaterialType.Gold => Color.Gold,
-				MaterialType.Iron => Color.Orange,
-				_ => Color.Black
+				MaterialType.Iron => Color.Gray,
+				MaterialType.Coal => Color.Black,
+				_ => Color.Red
 			};
 		}
 
@@ -420,6 +436,21 @@ namespace PDS
 				if (dot < min) min = dot;
 				if (dot > max) max = dot;
 			}
+		}
+
+		private static bool PointInPolygon(Vector2 point, Vector2[] polygon)
+		{
+			bool inside = false;
+			int j = polygon.Length - 1;
+			for (int i = 0; i < polygon.Length; j = i++)
+			{
+				if (((polygon[i].Y > point.Y) != (polygon[j].Y > point.Y)) &&
+					(point.X < (polygon[j].X - polygon[i].X) * (point.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y + float.Epsilon) + polygon[i].X))
+				{
+					inside = !inside;
+				}
+			}
+			return inside;
 		}
 	}
 }
