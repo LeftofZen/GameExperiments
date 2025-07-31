@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Experiments
+namespace Shared
 {
 	public static class SpriteBatchExtensions
 	{

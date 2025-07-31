@@ -3,26 +3,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.ImGuiNet;
+using Shared.Components;
 
 namespace _3D
 {
-
 	public class Game1 : Game
 	{
-		private GraphicsDeviceManager _graphics;
-		private SpriteBatch _spriteBatch;
+		GraphicsDeviceManager _graphics;
+		SpriteBatch _spriteBatch;
 		ImGuiRenderer GuiRenderer;
+		FpsComponent fpsComponent;
 
 		// Terrain fields
-		private VertexPositionNormalTexture[] _vertices;
-		private int[] _indices;
-		private BasicEffect _effect;
+		VertexPositionColorNormal[] vertices;
+		int[] indices;
+		BasicEffect _effect;
 
 		// Camera
 		private Camera3D _camera;
 
 		// Terrain size
 		TerrainGenParameters TerrainGenParams { get; set; } = new();
+		TerrainMeshParameters TerrainMeshParams { get; set; } = new();
 
 		public Game1()
 		{
@@ -35,10 +37,14 @@ namespace _3D
 
 		protected override void Initialize()
 		{
+			_spriteBatch = new SpriteBatch(GraphicsDevice);
 			_camera = new Camera3D(GraphicsDevice, new Vector3(256, 256, 256));
 
 			GuiRenderer = new ImGuiRenderer(this);
 			GuiRenderer.RebuildFontAtlas();
+
+			fpsComponent = new FpsComponent(this, _spriteBatch);
+			Components.Add(fpsComponent);
 
 			base.Initialize();
 		}
@@ -119,26 +125,28 @@ namespace _3D
 			var width = heightMap.GetLength(0);
 			var height = heightMap.GetLength(1);
 
-			_vertices = new VertexPositionNormalTexture[width * height];
+			var minHeight = float.MaxValue;
+			var maxHeight = float.MinValue;
 
-			// Generate vertices (centered at origin)
-			float xOffset = width / 2f;
-			float zOffset = height / 2f;
 			for (var z = 0; z < height; z++)
 			{
 				for (var x = 0; x < width; x++)
 				{
-					var y = heightMap[x, z];
-					_vertices[x + (z * width)] = new VertexPositionNormalTexture(
-						new Vector3(x - xOffset, y, z - zOffset),
-						Vector3.Up,
-						new Vector2(x / (float)width, z / (float)height)
-					);
+					var h = heightMap[x, z];
+					if (h < minHeight)
+					{
+						minHeight = h;
+					}
+
+					if (h > maxHeight)
+					{
+						maxHeight = h;
+					}
 				}
 			}
 
 			// Generate indices
-			_indices = new int[(width - 1) * (height - 1) * 6];
+			indices = new int[(width - 1) * (height - 1) * 6];
 			var i = 0;
 			for (var z = 0; z < height - 1; z++)
 			{
@@ -150,34 +158,90 @@ namespace _3D
 					var bottomRight = x + 1 + ((z + 1) * width);
 
 					// Counter-clockwise winding:
-					_indices[i++] = topLeft;
-					_indices[i++] = topRight;
-					_indices[i++] = bottomLeft;
+					indices[i++] = topLeft;
+					indices[i++] = topRight;
+					indices[i++] = bottomLeft;
 
-					_indices[i++] = topRight;
-					_indices[i++] = bottomRight;
-					_indices[i++] = bottomLeft;
+					indices[i++] = topRight;
+					indices[i++] = bottomRight;
+					indices[i++] = bottomLeft;
+				}
+			}
+
+			vertices = new VertexPositionColorNormal[width * height];
+
+			var xOffset = width / 2f;
+			var zOffset = height / 2f;
+
+			for (var z = 0; z < height; z++)
+			{
+				for (var x = 0; x < width; x++)
+				{
+					vertices[x + (z * width)] = new VertexPositionColorNormal(
+						new Vector3(x - xOffset, heightMap[x, z], z - zOffset),
+						Color.Magenta, // Temporary, will be recalculated below
+						Vector3.Up // Temporary, will be recalculated below
+					);
 				}
 			}
 
 			// Calculate normals
-			for (var n = 0; n < _indices.Length / 3; n++)
+			for (var v = 0; v < vertices.Length; v++)
 			{
-				var i1 = _indices[n * 3];
-				var i2 = _indices[(n * 3) + 1];
-				var i3 = _indices[(n * 3) + 2];
-
-				var side1 = _vertices[i2].Position - _vertices[i1].Position;
-				var side2 = _vertices[i3].Position - _vertices[i1].Position;
-				var normal = Vector3.Cross(side1, side2);
-
-				_vertices[i1].Normal += normal;
-				_vertices[i2].Normal += normal;
-				_vertices[i3].Normal += normal;
+				vertices[v].Normal = Vector3.Zero;
 			}
-			for (var v = 0; v < _vertices.Length; v++)
+
+			for (var n = 0; n < indices.Length / 3; n++)
 			{
-				_vertices[v].Normal.Normalize();
+				var i1 = indices[n * 3];
+				var i2 = indices[(n * 3) + 1];
+				var i3 = indices[(n * 3) + 2];
+
+				var side1 = vertices[i2].Position - vertices[i1].Position;
+				var side2 = vertices[i3].Position - vertices[i1].Position;
+				var normal = Vector3.Cross(side2, side1);
+
+				vertices[i1].Normal += normal;
+				vertices[i2].Normal += normal;
+				vertices[i3].Normal += normal;
+			}
+			for (var v = 0; v < vertices.Length; v++)
+			{
+				vertices[v].Normal.Normalize();
+			}
+
+			// Now, color if normal is steeper than cliff angle
+			var cliffAngle = MathHelper.ToRadians(90 - TerrainMeshParams.CliffAngle);
+
+			for (var v = 0; v < vertices.Length; v++)
+			{
+				ref var currentVert = ref vertices[v];
+				var t = (currentVert.Position.Y - minHeight) / (maxHeight - minHeight);
+				Color heightColour;
+				if (t < 0.2f)
+				{
+					heightColour = Color.Blue;
+				}
+				else if (t < 0.7f)
+				{
+					heightColour = Color.Green;
+				}
+				else if (t < 0.9f)
+				{
+					heightColour = Color.Gray;
+				}
+				else
+				{
+					heightColour = Color.White;
+				}
+
+				currentVert.Color = heightColour;
+
+				var dot = Vector3.Dot(currentVert.Normal, Vector3.Up);
+				if (dot < cliffAngle)
+				{
+					currentVert.Color = Color.Lerp(heightColour, Color.DarkGray, TerrainMeshParams.CliffAngleLerp);
+				}
 			}
 		}
 
@@ -191,10 +255,13 @@ namespace _3D
 			_camera.HandleInput(gameTime);
 
 			// update the mesh - super expensive
-			if (_lastTerrainGenParams == null || TerrainGenParamsChanged(TerrainGenParams, _lastTerrainGenParams))
+			bool genParamsChanged = _lastTerrainGenParams == null || TerrainGenParamsChanged(TerrainGenParams, _lastTerrainGenParams);
+			bool meshParamsChanged = _lastTerrainMeshParams == null || TerrainMeshParamsChanged(TerrainMeshParams, _lastTerrainMeshParams);
+			if (genParamsChanged || meshParamsChanged)
 			{
 				GenerateTerrainMesh(GenerateSimplexHeightMap(TerrainGenParams));
 				_lastTerrainGenParams = CloneTerrainGenParams(TerrainGenParams);
+				_lastTerrainMeshParams = CloneTerrainMeshParams(TerrainMeshParams);
 			}
 
 			base.Update(gameTime);
@@ -207,24 +274,24 @@ namespace _3D
 			GraphicsDevice.BlendState = BlendState.Opaque; // Opaque for solid 3D objects
 			GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise; // Or whatever your 3D culling is
 
-
 			GraphicsDevice.Clear(Color.SteelBlue);
 
 			_effect.View = _camera.ViewMatrix;
 			_effect.Projection = _camera.ProjectionMatrix;
 			_effect.World = Matrix.Identity;
+			_effect.VertexColorEnabled = true;
 
 			foreach (var pass in _effect.CurrentTechnique.Passes)
 			{
 				pass.Apply();
 				GraphicsDevice.DrawUserIndexedPrimitives(
 					PrimitiveType.TriangleList,
-					_vertices,
+					vertices,
 					0,
-					_vertices.Length,
-					_indices,
+					vertices.Length,
+					indices,
 					0,
-					_indices.Length / 3
+					indices.Length / 3
 				);
 			}
 
@@ -282,7 +349,7 @@ namespace _3D
 					ImGui.Text("Camera Rotation: " + _camera.Rotation);
 
 					// Field of View control (degrees for user, radians internally)
-					float fovDegrees = MathHelper.ToDegrees(_camera.FieldOfView);
+					var fovDegrees = MathHelper.ToDegrees(_camera.FieldOfView);
 					if (ImGui.SliderFloat("Field of View", ref fovDegrees, 10f, 120f, "%.1f deg"))
 					{
 						_camera.FieldOfView = MathHelper.ToRadians(fovDegrees);
@@ -290,7 +357,7 @@ namespace _3D
 				}
 
 				// --- Terrain Section ---
-				if (ImGui.CollapsingHeader("Terrain", ImGuiTreeNodeFlags.DefaultOpen))
+				if (ImGui.CollapsingHeader("Terrain Generation", ImGuiTreeNodeFlags.DefaultOpen))
 				{
 					var freq = TerrainGenParams.Frequency;
 					if (ImGui.SliderFloat("Frequency", ref freq, 0f, 5f))
@@ -335,15 +402,30 @@ namespace _3D
 					}
 
 					var width = TerrainGenParams.Width;
-					if (ImGui.SliderInt("Width", ref width, 16, 512))
+					if (ImGui.SliderInt("Width", ref width, 16, 2048))
 					{
 						TerrainGenParams.Width = width;
 					}
 
 					var height = TerrainGenParams.Height;
-					if (ImGui.SliderInt("Height", ref height, 16, 512))
+					if (ImGui.SliderInt("Height", ref height, 16, 2048))
 					{
 						TerrainGenParams.Height = height;
+					}
+				}
+
+				if (ImGui.CollapsingHeader("Terrain Mesh", ImGuiTreeNodeFlags.DefaultOpen))
+				{
+					var cliffAngle = TerrainMeshParams.CliffAngle;
+					if (ImGui.SliderInt("Cliff Angle", ref cliffAngle, 0, 90, "%d deg"))
+					{
+						TerrainMeshParams.CliffAngle = cliffAngle;
+					}
+
+					var cliffLerp = TerrainMeshParams.CliffAngleLerp;
+					if (ImGui.SliderFloat("Cliff Angle Lerp", ref cliffLerp, 0f, 1f, "%.2f"))
+					{
+						TerrainMeshParams.CliffAngleLerp = cliffLerp;
 					}
 				}
 
@@ -356,7 +438,11 @@ namespace _3D
 		// Add this helper method to compare TerrainGenParameters
 		private bool TerrainGenParamsChanged(TerrainGenParameters a, TerrainGenParameters b)
 		{
-			if (a == null || b == null) return true;
+			if (a == null || b == null)
+			{
+				return true;
+			}
+
 			return a.Width != b.Width ||
 				   a.Height != b.Height ||
 				   a.Scale != b.Scale ||
@@ -367,6 +453,30 @@ namespace _3D
 				   a.Persistence != b.Persistence ||
 				   a.Lacunarity != b.Lacunarity;
 		}
+
+		// Add this helper method to compare TerrainMeshParameters
+		private bool TerrainMeshParamsChanged(TerrainMeshParameters a, TerrainMeshParameters b)
+		{
+			if (a == null || b == null)
+			{
+				return true;
+			}
+
+			return a.CliffAngle != b.CliffAngle || a.CliffAngleLerp != b.CliffAngleLerp;
+		}
+
+		// Add this helper to clone TerrainMeshParameters
+		private TerrainMeshParameters CloneTerrainMeshParams(TerrainMeshParameters src)
+		{
+			return new TerrainMeshParameters
+			{
+				CliffAngle = src.CliffAngle,
+				CliffAngleLerp = src.CliffAngleLerp
+			};
+		}
+
+		// Add this field to your Game1 class:
+		private TerrainMeshParameters _lastTerrainMeshParams = null;
 
 		// Add this helper to clone TerrainGenParameters
 		private TerrainGenParameters CloneTerrainGenParams(TerrainGenParameters src)

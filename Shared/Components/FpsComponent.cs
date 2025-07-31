@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SharedContent;
 
-namespace Experiments.Components
+namespace Shared.Components
 {
 	public class FpsComponent : DrawableGameComponent
 	{
@@ -27,7 +27,6 @@ namespace Experiments.Components
 		public override void Update(GameTime gameTime)
 		{
 			_elapsed += gameTime.ElapsedGameTime.TotalSeconds;
-			_frames++;
 
 			if (_elapsed >= 1.0)
 			{
@@ -41,6 +40,8 @@ namespace Experiments.Components
 
 		public override void Draw(GameTime gameTime)
 		{
+			_frames++;
+
 			_spriteBatch.Begin();
 
 			_spriteBatch.DrawStringLayer(_font, $"FPS: {_fps}", new Vector2(10, 10), Color.Yellow, Color.Black);

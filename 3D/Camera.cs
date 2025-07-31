@@ -23,7 +23,7 @@ namespace _3D
 
 		private float _aspectRatio;
 		private float _nearPlaneDistance = 0.1f;
-		private float _farPlaneDistance = 1000f;
+		private float _farPlaneDistance = float.MaxValue;
 
 		const float DefaultMovementSpeed = 50f;
 		const float BoostMultiplier = 5f;
@@ -43,7 +43,7 @@ namespace _3D
 		/// <param name="fieldOfView">The camera's field of view in radians.</param>
 		/// <param name="nearPlaneDistance">The distance to the near clipping plane.</param>
 		/// <param name="farPlaneDistance">The distance to the far clipping plane.</param>
-		public Camera3D(GraphicsDevice graphicsDevice, Vector3 initialPosition, float fieldOfView = MathHelper.PiOver4, float nearPlaneDistance = 0.1f, float farPlaneDistance = 1000f)
+		public Camera3D(GraphicsDevice graphicsDevice, Vector3 initialPosition, float fieldOfView = MathHelper.PiOver4, float nearPlaneDistance = 0.1f, float farPlaneDistance = float.MaxValue)
 		{
 			GraphicsDevice = graphicsDevice;
 			Position = initialPosition;

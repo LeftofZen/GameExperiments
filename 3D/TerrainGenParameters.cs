@@ -2,8 +2,8 @@
 {
 	public class TerrainGenParameters
 	{
-		public int Width { get; set; } = 256;
-		public int Height { get; set; } = 256;
+		public int Width { get; set; } = 1024;
+		public int Height { get; set; } = 1024;
 		public float Scale { get; set; } = 0.001f;
 		public float HeightScale { get; set; } = 128f;
 		public int Octaves { get; set; } = 8;
