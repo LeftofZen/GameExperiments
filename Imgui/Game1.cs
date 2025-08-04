@@ -2,20 +2,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.ImGuiNet;
-
+using Shared;
 using Vec2 = System.Numerics.Vector2;
 using Vec3 = System.Numerics.Vector3;
 using Vec4 = System.Numerics.Vector4;
 
 namespace Imgui
 {
-	public class Game1 : Game
+	public class Game1 : ImGuiGame
 	{
 		private GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
 
-		ImGuiRenderer GuiRenderer;
 		bool WasResized = false;
 
 		public Game1()
@@ -33,10 +31,6 @@ namespace Imgui
 
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
-			GuiRenderer = new ImGuiRenderer(this);
-			GuiRenderer.RebuildFontAtlas();
-
 			base.Initialize();
 		}
 
@@ -61,9 +55,13 @@ namespace Imgui
 		protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
+			base.Draw(gameTime);
+		}
 
+		protected override void DrawImGui(GameTime gameTime)
+		{
 			// Begin ImGui frame
-			GuiRenderer.BeginLayout(gameTime);
+			//GuiRenderer.BeginLayout(gameTime);
 
 			// Example ImGui UI
 			ImGui.Text("Hello, ImGui!");
@@ -90,9 +88,8 @@ namespace Imgui
 
 
 			// End ImGui frame
-			GuiRenderer.EndLayout();
-
-			base.Draw(gameTime);
+			//GuiRenderer.EndLayout();
+			//base.DrawImGui(gameTime);
 		}
 
 		private void ShowExampleMenuFile()

@@ -1,22 +1,26 @@
-﻿using Experiments.Components;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Shared;
 using Shared.Components;
+using Shared.ImGuiNet;
 
-namespace Experiments
+namespace Shared
 {
-	public class Game1 : ImGuiGame
+	public class ImGuiGame : Game
 	{
-		private GridComponent gridComponent;
-		private QuadTreeComponent quadTreeComponent;
+		public GraphicsDeviceManager Graphics { get; private set; }
+		public SpriteBatch SpriteBatch { get; private set; }
 
-		public Game1()
+		public ImGuiRenderer GuiRenderer { get; private set; }
+
+		private FpsComponent fpsComponent;
+
+		public ImGuiGame()
 		{
 			Content.RootDirectory = "Content";
-
 			IsMouseVisible = true;
+
+			Graphics = new GraphicsDeviceManager(this);
 
 			// Set window size before the game starts
 			Graphics.PreferredBackBufferWidth = 1280;
@@ -24,25 +28,22 @@ namespace Experiments
 			Graphics.ApplyChanges();
 
 			Window.AllowAltF4 = true;
-			Window.Title = "Grid Experiments";
+			Window.Title = "Base Game";
 			Window.AllowUserResizing = true;
-			//Window.IsBorderless = true;
+
+			SpriteBatch = new SpriteBatch(GraphicsDevice);
 		}
 
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
-			gridComponent = new GridComponent(this, SpriteBatch, 32);
-			//Components.Add(gridComponent);
 
-			quadTreeComponent = new QuadTreeComponent(this, SpriteBatch, new Rectangle(0, 0, 512, 512));
-			Components.Add(quadTreeComponent);
+			GuiRenderer = new ImGuiRenderer(this);
+			GuiRenderer.RebuildFontAtlas();
+			fpsComponent = new FpsComponent(this, SpriteBatch);
+			Components.Add(fpsComponent);
 
 			base.Initialize();
 		}
-
-		protected override void LoadContent()
-		{ }
 
 		protected override void Update(GameTime gameTime)
 		{
@@ -51,15 +52,19 @@ namespace Experiments
 				Exit();
 			}
 
-			// TODO: Add your update logic here
-
 			base.Update(gameTime);
 		}
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.SteelBlue);
+			GuiRenderer.BeginLayout(gameTime);
+			DrawImGui(gameTime);
+			GuiRenderer.EndLayout();
+
 			base.Draw(gameTime);
 		}
+
+		protected virtual void DrawImGui(GameTime gameTime)
+		{ }
 	}
 }

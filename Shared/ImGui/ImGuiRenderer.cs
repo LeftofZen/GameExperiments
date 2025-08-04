@@ -5,10 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using ImGuiNET;
-using System.Threading;
-using System.Reflection;
 
-namespace MonoGame.ImGuiNet;
+namespace Shared.ImGuiNet;
 
 public class ImGuiRenderer
 {

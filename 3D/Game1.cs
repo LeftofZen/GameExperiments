@@ -2,19 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.ImGuiNet;
+using Shared;
 using Shared.Components;
 using System.Collections.Generic;
 
 namespace _3D
 {
-	public class Game1 : Game
+	public class Game1 : ImGuiGame
 	{
-		GraphicsDeviceManager _graphics;
-		SpriteBatch _spriteBatch;
-		ImGuiRenderer GuiRenderer;
-		FpsComponent fpsComponent;
-
 		// Terrain fields
 		float[,] heightmap;
 		VertexPositionColorNormal[] terrainVertices;
@@ -22,6 +17,8 @@ namespace _3D
 		Vector3[,] terrainNormals;
 		BasicEffect terrainEffect;
 		BasicEffect treeEffect;
+
+		Effect basicShader;
 
 		// Camera
 		Camera3D _camera;
@@ -51,31 +48,19 @@ namespace _3D
 
 		public Game1()
 		{
-			_graphics = new GraphicsDeviceManager(this);
+			Graphics.GraphicsProfile = GraphicsProfile.HiDef;
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
-			_graphics.PreferredBackBufferWidth = 1920;
-			_graphics.PreferredBackBufferHeight = 1080;
 		}
 
 		protected override void Initialize()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
 			_camera = new Camera3D(GraphicsDevice, new Vector3(256, 256, 256));
-
-			GuiRenderer = new ImGuiRenderer(this);
-			GuiRenderer.RebuildFontAtlas();
-
-			fpsComponent = new FpsComponent(this, _spriteBatch);
-			Components.Add(fpsComponent);
-
 			base.Initialize();
 		}
 
 		protected override void LoadContent()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
-
 			terrainEffect = new BasicEffect(GraphicsDevice)
 			{
 				LightingEnabled = true,
@@ -91,6 +76,9 @@ namespace _3D
 				VertexColorEnabled = false
 			};
 			treeEffect.EnableDefaultLighting();
+
+			// Load the custom shader
+			basicShader = Content.Load<Effect>("PixelShader");
 		}
 
 		void RegenerateMap(TerrainGenParameters terrainParams)
@@ -149,114 +137,17 @@ namespace _3D
 
 			GraphicsDevice.Clear(Color.SteelBlue);
 
-			terrainEffect.View = _camera.ViewMatrix;
-			terrainEffect.Projection = _camera.ProjectionMatrix;
-			terrainEffect.World = Matrix.Identity;
-			terrainEffect.VertexColorEnabled = true;
-			terrainEffect.SpecularColor = new Vector3(terrainSpecularColor.X, terrainSpecularColor.Y, terrainSpecularColor.Z);
-			terrainEffect.SpecularPower = terrainSpecularPower;
-			terrainEffect.AmbientLightColor = ambientLightColor;
-			terrainEffect.DiffuseColor = terrainDiffuseColor;
-			terrainEffect.EmissiveColor = terrainEmissiveColor;
-
-			treeEffect.View = _camera.ViewMatrix;
-			treeEffect.Projection = _camera.ProjectionMatrix;
-			treeEffect.World = Matrix.Identity;
-			treeEffect.VertexColorEnabled = true;
-			treeEffect.SpecularColor = new Vector3(treeSpecularColor.X, treeSpecularColor.Y, treeSpecularColor.Z);
-			treeEffect.SpecularPower = treeSpecularPower;
-			treeEffect.AmbientLightColor = ambientLightColor;
-			treeEffect.DiffuseColor = treeDiffuseColor;
-			treeEffect.EmissiveColor = treeEmissiveColor;
-
 			DrawTerrain();
+			//DrawTerrainPixelShader();
+
 			DrawTrees();
 			DrawAxes();
-			DrawImGui(gameTime);
 
 			base.Draw(gameTime);
 		}
 
-		private void DrawTerrain()
+		protected override void DrawImGui(GameTime gameTime)
 		{
-			foreach (var pass in terrainEffect.CurrentTechnique.Passes)
-			{
-				pass.Apply();
-				GraphicsDevice.DrawUserIndexedPrimitives(
-					PrimitiveType.TriangleList,
-					terrainVertices,
-					0,
-					terrainVertices.Length,
-					terrainIndices,
-					0,
-					terrainIndices.Length / 3
-				);
-			}
-		}
-
-		private void DrawTrees()
-		{
-			foreach (var pass in treeEffect.CurrentTechnique.Passes)
-			{
-				pass.Apply();
-				foreach (var tree in Trees)
-				{
-					GraphicsDevice.DrawUserIndexedPrimitives(
-						PrimitiveType.TriangleList,
-						tree.Mesh.Vertices,
-						0,
-						tree.Mesh.Vertices.Length,
-						tree.Mesh.Indices,
-						0,
-						tree.Mesh.Indices.Length / 3
-					);
-				}
-			}
-		}
-
-		private void DrawAxes()
-		{
-			// --- Draw world axes ---
-			var axisEffect = new BasicEffect(GraphicsDevice)
-			{
-				VertexColorEnabled = true,
-				View = _camera.ViewMatrix,
-				Projection = _camera.ProjectionMatrix,
-				World = Matrix.Identity,
-			};
-
-			axisEffect.View = _camera.ViewMatrix;
-			axisEffect.Projection = _camera.ProjectionMatrix;
-
-			VertexPositionColor[] axisVerts =
-			[
-				// X axis (red)
-				new(new Vector3(0, 0, 0), Color.Red),
-				new(new Vector3(32, 0, 0), Color.Red),
-				// Y axis (green)
-				new(new Vector3(0, 0, 0), Color.Green),
-				new(new Vector3(0, 32, 0), Color.Green),
-				// Z axis (blue)
-				new(new Vector3(0, 0, 0), Color.Blue),
-				new(new Vector3(0, 0, 32), Color.Blue),
-			];
-
-			foreach (var pass in axisEffect.CurrentTechnique.Passes)
-			{
-				pass.Apply();
-				GraphicsDevice.DrawUserPrimitives(
-					PrimitiveType.LineList,
-					axisVerts,
-					0,
-					3 // 3 lines
-				);
-			}
-		}
-
-		void DrawImGui(GameTime gameTime)
-		{
-			GuiRenderer.BeginLayout(gameTime);
-
 			if (ImGui.Begin("3D Terrain Editor"))
 			{
 				// --- Camera Section ---
@@ -480,10 +371,125 @@ namespace _3D
 					}
 				}
 
-				ImGui.End();
 			}
+			ImGui.End();
+		}
 
-			GuiRenderer.EndLayout();
+		private void DrawTerrain()
+		{
+			terrainEffect.View = _camera.ViewMatrix;
+			terrainEffect.Projection = _camera.ProjectionMatrix;
+			terrainEffect.World = Matrix.Identity;
+			terrainEffect.VertexColorEnabled = true;
+			terrainEffect.SpecularColor = new Vector3(terrainSpecularColor.X, terrainSpecularColor.Y, terrainSpecularColor.Z);
+			terrainEffect.SpecularPower = terrainSpecularPower;
+			terrainEffect.AmbientLightColor = ambientLightColor;
+			terrainEffect.DiffuseColor = terrainDiffuseColor;
+			terrainEffect.EmissiveColor = terrainEmissiveColor;
+
+			foreach (var pass in terrainEffect.CurrentTechnique.Passes)
+			{
+				pass.Apply();
+				GraphicsDevice.DrawUserIndexedPrimitives(
+					PrimitiveType.TriangleList,
+					terrainVertices,
+					0,
+					terrainVertices.Length,
+					terrainIndices,
+					0,
+					terrainIndices.Length / 3
+				);
+			}
+		}
+
+		private void DrawTerrainPixelShader()
+		{
+			// Set shader parameters
+			basicShader.Parameters["WorldViewProjection"].SetValue(
+				Matrix.Identity * _camera.ViewMatrix * _camera.ProjectionMatrix);
+
+			foreach (var pass in basicShader.CurrentTechnique.Passes)
+			{
+				pass.Apply();
+				GraphicsDevice.DrawUserIndexedPrimitives(
+					PrimitiveType.TriangleList,
+					terrainVertices,
+					0,
+					terrainVertices.Length,
+					terrainIndices,
+					0,
+					terrainIndices.Length / 3
+				);
+			}
+		}
+
+		private void DrawTrees()
+		{
+			treeEffect.View = _camera.ViewMatrix;
+			treeEffect.Projection = _camera.ProjectionMatrix;
+			treeEffect.World = Matrix.Identity;
+			treeEffect.VertexColorEnabled = true;
+			treeEffect.SpecularColor = new Vector3(treeSpecularColor.X, treeSpecularColor.Y, treeSpecularColor.Z);
+			treeEffect.SpecularPower = treeSpecularPower;
+			treeEffect.AmbientLightColor = ambientLightColor;
+			treeEffect.DiffuseColor = treeDiffuseColor;
+			treeEffect.EmissiveColor = treeEmissiveColor;
+
+			foreach (var pass in treeEffect.CurrentTechnique.Passes)
+			{
+				pass.Apply();
+				foreach (var tree in Trees)
+				{
+					GraphicsDevice.DrawUserIndexedPrimitives(
+						PrimitiveType.TriangleList,
+						tree.Mesh.Vertices,
+						0,
+						tree.Mesh.Vertices.Length,
+						tree.Mesh.Indices,
+						0,
+						tree.Mesh.Indices.Length / 3
+					);
+				}
+			}
+		}
+
+		private void DrawAxes()
+		{
+			// --- Draw world axes ---
+			var axisEffect = new BasicEffect(GraphicsDevice)
+			{
+				VertexColorEnabled = true,
+				View = _camera.ViewMatrix,
+				Projection = _camera.ProjectionMatrix,
+				World = Matrix.Identity,
+			};
+
+			axisEffect.View = _camera.ViewMatrix;
+			axisEffect.Projection = _camera.ProjectionMatrix;
+
+			VertexPositionColor[] axisVerts =
+			[
+				// X axis (red)
+				new(new Vector3(0, 0, 0), Color.Red),
+				new(new Vector3(32, 0, 0), Color.Red),
+				// Y axis (green)
+				new(new Vector3(0, 0, 0), Color.Green),
+				new(new Vector3(0, 32, 0), Color.Green),
+				// Z axis (blue)
+				new(new Vector3(0, 0, 0), Color.Blue),
+				new(new Vector3(0, 0, 32), Color.Blue),
+			];
+
+			foreach (var pass in axisEffect.CurrentTechnique.Passes)
+			{
+				pass.Apply();
+				GraphicsDevice.DrawUserPrimitives(
+					PrimitiveType.LineList,
+					axisVerts,
+					0,
+					3 // 3 lines
+				);
+			}
 		}
 
 		static bool TerrainGenParamsChanged(TerrainGenParameters a, TerrainGenParameters b)
@@ -582,6 +588,6 @@ namespace _3D
 		}
 
 		private static System.Numerics.Vector3 ToNumerics(Vector3 v)
-			=> new System.Numerics.Vector3(v.X, v.Y, v.Z);
+			=> new(v.X, v.Y, v.Z);
 	}
 }
