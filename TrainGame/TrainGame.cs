@@ -3,12 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Shapes;
-using MonoGame.Extended.Tiled;
 using Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TrainGame.Track;
 using TrainGame.Train;
 using TrainGame.World;
@@ -22,8 +19,10 @@ namespace TrainGame
 		private Camera2D _camera;
 		private PathFinding _pathFinding = new PathFinding();
 
-		private const int TileWidth = 64;
-		private const int TileHeight = 32;
+		bool debugDrawing { get; set; }
+
+		private const int TileWidth = 128;
+		private const int TileHeight = 64;
 		private MouseState _prevMouse;
 		private List<Vehicle> _trains = new();
 		private int _trainCounter = 1;
@@ -43,7 +42,7 @@ namespace TrainGame
 		{
 			_camera = new Camera2D();
 			_tileMap = new TileMap(20, 20); // Example size
-			_renderer = new Renderer(SpriteBatch);
+			_renderer = new Renderer(SpriteBatch, TileWidth, TileHeight);
 			base.Initialize();
 		}
 
@@ -59,21 +58,21 @@ namespace TrainGame
 
 			// Camera movement
 			if (keyboardState.IsKeyDown(Keys.Up))
-				_camera.Position += new Vector2(0, -200) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+				_camera.Position += new Vector2(0, -_camera.MovementSpeed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			if (keyboardState.IsKeyDown(Keys.Down))
-				_camera.Position += new Vector2(0, 200) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+				_camera.Position += new Vector2(0, _camera.MovementSpeed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			if (keyboardState.IsKeyDown(Keys.Left))
-				_camera.Position += new Vector2(-200, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+				_camera.Position += new Vector2(-_camera.MovementSpeed, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			if (keyboardState.IsKeyDown(Keys.Right))
-				_camera.Position += new Vector2(200, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+				_camera.Position += new Vector2(_camera.MovementSpeed, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			// Camera zoom
 			var previousZoom = _camera.Zoom;
 			var mouseScreenPosition = new Vector2(mouseState.X, mouseState.Y);
 			var mouseWorldPositionBeforeZoom = Vector2.Transform(mouseScreenPosition, Matrix.Invert(_camera.GetTransformMatrix()));
 
-			_camera.Zoom += mouseState.ScrollWheelValue / 4800f;
-			_camera.Zoom = MathHelper.Clamp(_camera.Zoom, 0.5f, 2f);
+			var zoomChange = (mouseState.ScrollWheelValue - _prevMouse.ScrollWheelValue) / 1000f;
+			_camera.Zoom = MathHelper.Clamp(_camera.Zoom + zoomChange, 0.5f, 2f);
 
 			if (_camera.Zoom != previousZoom)
 			{
@@ -195,6 +194,7 @@ namespace TrainGame
 		{
 			GraphicsDevice.Clear(Color.SteelBlue);
 			SpriteBatch.Begin(transformMatrix: _camera.GetTransformMatrix());
+			//SpriteBatch.Begin();
 
 			var mouseState = Mouse.GetState();
 			var (highlightedTileX, highlightedTileY) = _camera.ScreenToIsoTile(mouseState.X, mouseState.Y, _tileMap.Width, TileWidth, TileHeight);
@@ -206,7 +206,6 @@ namespace TrainGame
 				{
 					var tile = _tileMap.Tiles[x, y];
 					var (screenX, screenY) = _camera.IsoTileToScreen(x, y, _tileMap.Width, TileWidth, TileHeight);
-
 					_renderer.DrawIsoTile(screenX, screenY, x, y, highlightedTileX == x && highlightedTileY == y, tile);
 				}
 			}
@@ -215,17 +214,54 @@ namespace TrainGame
 			for (var i = 0; i < _trains.Count; i++)
 			{
 				var train = _trains[i];
-				var (screenX, screenY) = _camera.IsoTileToScreenF(train.PosX, train.PosY, _tileMap.Width, TileWidth, TileHeight);
+				var (screenX, screenY) = _camera.IsoTileToScreen((int)train.PosX, (int)train.PosY, _tileMap.Width, TileWidth, TileHeight);
 				var color = (i == _selectedTrain) ? Color.Yellow : Color.Red;
 				_renderer.DrawTrain(screenX, screenY, color);
+			}
+
+			if (debugDrawing)
+			{
+				DrawDebugGrid();
+				DrawDebugAxes();
 			}
 
 			SpriteBatch.End();
 			base.Draw(gameTime);
 		}
 
+		private void DrawDebugAxes()
+		{
+			SpriteBatch.FillRectangle(new RectangleF(-5, -5, 11, 11), Color.Black);
+			SpriteBatch.DrawLine(Vector2.Zero, Vector2.UnitX * 16, Color.Red, 3);
+			SpriteBatch.DrawLine(Vector2.Zero, Vector2.UnitY * 16, Color.Green, 3);
+
+			SpriteBatch.DrawLine(Vector2.Zero, Vector2.UnitX * Graphics.PreferredBackBufferWidth, Color.Red, 1);
+			SpriteBatch.DrawLine(Vector2.Zero, Vector2.UnitY * Graphics.PreferredBackBufferHeight, Color.Green, 1);
+		}
+
+		private void DrawDebugGrid()
+		{
+			const int gridSize = 32;
+			for (var y = 0; y < Graphics.PreferredBackBufferHeight / gridSize; y++)
+			{
+				SpriteBatch.DrawLine(new Vector2(0, y * gridSize), new Vector2(Graphics.PreferredBackBufferWidth, y * gridSize), Color.CornflowerBlue, 1);
+			}
+
+			for (var x = 0; x < Graphics.PreferredBackBufferWidth / 32; x++)
+			{
+				SpriteBatch.DrawLine(new Vector2(x * gridSize, 0), new Vector2(x * gridSize, Graphics.PreferredBackBufferHeight), Color.CornflowerBlue, 1);
+			}
+		}
+
 		protected override void DrawImGui(GameTime gameTime)
 		{
+			ImGui.Begin("Debug");
+			if (ImGui.Button("Debug Drawing"))
+			{
+				debugDrawing = !debugDrawing;
+			}
+			ImGui.End();
+
 			ImGui.Begin("Mouse Position");
 
 			var mouseState = Mouse.GetState();
@@ -233,6 +269,10 @@ namespace TrainGame
 
 			var (tileX, tileY) = _camera.ScreenToIsoTile(mouseState.X, mouseState.Y, _tileMap.Width, TileWidth, TileHeight);
 			ImGui.Text($"Game Position: {tileX}, {tileY}");
+
+			ImGui.Text($"Camera Position:{_camera.Position}");
+			ImGui.Text($"Camera Zoom:{_camera.Zoom}");
+			ImGui.Text($"Camera Rotation:{_camera.Rotation}");
 
 			ImGui.End();
 

@@ -13,12 +13,14 @@ namespace TrainGame
 	{
 		private SpriteFont _font;
 		private SpriteBatch SpriteBatch;
-		private const int TileWidth = 64;
-		private const int TileHeight = 32;
+		private int TileWidth { get; init; }
+		private int TileHeight { get; init; }
 
-		public Renderer(SpriteBatch spriteBatch)
+		public Renderer(SpriteBatch spriteBatch, int tileWidth, int tileHeight)
 		{
 			SpriteBatch = spriteBatch;
+			TileWidth = tileWidth;
+			TileHeight = tileHeight;
 		}
 
 		public void LoadContent(ContentManager content)
@@ -73,28 +75,50 @@ namespace TrainGame
 			var cy = screenY + (TileHeight / 2);
 			var len = TileWidth / 2;
 			var thick = 6;
-			// Simple visualizations for demo
+
+			// Adjusted calculations for isometric perspective
+			var isoOffsetX = TileWidth / 2;
+			var isoOffsetY = TileHeight / 4;
+
 			switch (trackType)
 			{
 				case TrackType.Straight:
 					if (dir == TrackDirection.EastWest)
 					{
-						DrawLine(new Point(cx - (len / 2), cy), new Point(cx + (len / 2), cy), overlayColor, thick);
+						// Horizontal in isometric (diagonal in screen space)
+						DrawLine(
+							new Point(cx - isoOffsetX, cy + isoOffsetY),
+							new Point(cx + isoOffsetX, cy - isoOffsetY),
+							overlayColor, thick
+						);
 					}
 					else if (dir == TrackDirection.NorthSouth)
 					{
-						DrawLine(new Point(cx, cy - (len / 2)), new Point(cx, cy + (len / 2)), overlayColor, thick);
+						// Vertical in isometric (diagonal in screen space)
+						DrawLine(
+							new Point(cx - isoOffsetX, cy - isoOffsetY),
+							new Point(cx + isoOffsetX, cy + isoOffsetY),
+							overlayColor, thick
+						);
 					}
 
 					break;
 				case TrackType.Diagonal:
 					if (dir == TrackDirection.NorthEast || dir == TrackDirection.SouthWest)
 					{
-						DrawLine(new Point(cx - (len / 2), cy + (len / 2)), new Point(cx + (len / 2), cy - (len / 2)), overlayColor, thick);
+						DrawLine(
+							new Point(cx - isoOffsetX, cy + isoOffsetY),
+							new Point(cx + isoOffsetX, cy - isoOffsetY),
+							overlayColor, thick
+						);
 					}
 					else if (dir == TrackDirection.NorthWest || dir == TrackDirection.SouthEast)
 					{
-						DrawLine(new Point(cx - (len / 2), cy - (len / 2)), new Point(cx + (len / 2), cy + (len / 2)), overlayColor, thick);
+						DrawLine(
+							new Point(cx - isoOffsetX, cy - isoOffsetY),
+							new Point(cx + isoOffsetX, cy + isoOffsetY),
+							overlayColor, thick
+						);
 					}
 
 					break;
@@ -108,8 +132,16 @@ namespace TrainGame
 					DrawCurve(cx, cy, len + (TileWidth / 4), dir, overlayColor, thick, 0.5f);
 					break;
 				case TrackType.Intersection:
-					DrawLine(new Point(cx - (len / 2), cy), new Point(cx + (len / 2), cy), overlayColor, thick);
-					DrawLine(new Point(cx, cy - (len / 2)), new Point(cx, cy + (len / 2)), overlayColor, thick);
+					DrawLine(
+						new Point(cx - isoOffsetX, cy + isoOffsetY),
+						new Point(cx + isoOffsetX, cy - isoOffsetY),
+						overlayColor, thick
+					);
+					DrawLine(
+						new Point(cx - isoOffsetX, cy - isoOffsetY),
+						new Point(cx + isoOffsetX, cy + isoOffsetY),
+						overlayColor, thick
+					);
 					break;
 			}
 		}
@@ -169,22 +201,6 @@ namespace TrainGame
 			// Draw a simple circle or square for the train
 			var size = TileHeight / 2;
 			SpriteBatch.DrawRectangle(new Rectangle(screenX + (TileWidth / 2) - (size / 2), screenY + (TileHeight / 2) - (size / 2), size, size), color);
-		}
-
-		public void HighlightTileUnderCursor(int mouseX, int mouseY, Camera2D camera, TileMap tileMap)
-		{
-			// Convert mouse position to isometric tile coordinates
-			var (tileX, tileY) = camera.ScreenToIsoTile(mouseX, mouseY, tileMap.Width, TileWidth, TileHeight);
-
-			// Check if the tile is within bounds
-			if (tileX >= 0 && tileY >= 0 && tileX < tileMap.Width && tileY < tileMap.Height)
-			{
-				// Get the screen position of the tile
-				var (screenX, screenY) = camera.IsoTileToScreen(tileX, tileY, tileMap.Width, TileWidth, TileHeight);
-
-				// Draw a semi-transparent highlight over the tile
-				SpriteBatch.DrawRectangle(new Rectangle(screenX, screenY, TileWidth, TileHeight), Color.Yellow * 0.5f);
-			}
 		}
 	}
 }
