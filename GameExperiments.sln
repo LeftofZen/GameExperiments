@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grids", "Grids\Grids.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imgui", "Imgui\Imgui.csproj", "{9B9568E0-AF29-4050-AC64-37B1AA9CF8B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDS", "PDS\PDS.csproj", "{311FEB55-98FB-458A-9396-8C3DEE43B81E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoissonDiscSampling", "PDS\PoissonDiscSampling.csproj", "{311FEB55-98FB-458A-9396-8C3DEE43B81E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D", "3D\3D.csproj", "{338F7F65-44AF-40D9-9A5C-1A1B8BF7A6AA}"
 EndProject
@@ -30,6 +30,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audio", "Audio\Audio.csproj", "{F9B1EA38-EA70-4A24-A91F-D4ACF5169338}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPH", "SPH\SPH.csproj", "{86CA26AE-7907-472D-82CD-FD7700C644FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLM-AI", "LLM-AI\LLM-AI.csproj", "{2F53BD27-FDCB-4CA8-A67C-745EB3A3F105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLM-AI-Console", "LLM-AI-Console\LLM-AI-Console.csproj", "{5E00242F-5619-4DFE-A752-0511D2621426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSystem", "LSystem\LSystem.csproj", "{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainGame", "TrainGame\TrainGame.csproj", "{F2233114-1738-46B3-8118-83D962FD3CDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +81,22 @@ Global
 		{86CA26AE-7907-472D-82CD-FD7700C644FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86CA26AE-7907-472D-82CD-FD7700C644FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86CA26AE-7907-472D-82CD-FD7700C644FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F53BD27-FDCB-4CA8-A67C-745EB3A3F105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F53BD27-FDCB-4CA8-A67C-745EB3A3F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F53BD27-FDCB-4CA8-A67C-745EB3A3F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F53BD27-FDCB-4CA8-A67C-745EB3A3F105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E00242F-5619-4DFE-A752-0511D2621426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E00242F-5619-4DFE-A752-0511D2621426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E00242F-5619-4DFE-A752-0511D2621426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E00242F-5619-4DFE-A752-0511D2621426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2233114-1738-46B3-8118-83D962FD3CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2233114-1738-46B3-8118-83D962FD3CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2233114-1738-46B3-8118-83D962FD3CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2233114-1738-46B3-8118-83D962FD3CDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,12 +105,15 @@ Global
 		SolutionGuid = {931AA365-2A64-470F-9CFF-AE4C18F1B370}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedContent\SharedContent.projitems*{2f53bd27-fdcb-4ca8-a67c-745eb3a3f105}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{311feb55-98fb-458a-9396-8c3dee43b81e}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{338f7f65-44af-40d9-9a5c-1a1b8bf7a6aa}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{6e905087-1bc4-4f1f-b4a9-e412e412ba2f}*SharedItemsImports = 13
 		SharedContent\SharedContent.projitems*{7ea0cccf-878c-4055-a02f-6c330f624990}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{86ca26ae-7907-472d-82cd-fd7700c644fd}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{aef24d62-3f2b-454f-b194-6c74b239cfb7}*SharedItemsImports = 5
+		SharedContent\SharedContent.projitems*{bf4d72d4-c3d8-491c-b7dc-77349735b9d4}*SharedItemsImports = 5
+		SharedContent\SharedContent.projitems*{f2233114-1738-46b3-8118-83d962fd3cdb}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{f9b1ea38-ea70-4a24-a91f-d4acf5169338}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{fd97d45b-b6aa-495e-bc4a-c4cefdbb3b3b}*SharedItemsImports = 5
 	EndGlobalSection
