@@ -34,6 +34,26 @@ namespace _3D
 
 		private MouseState previousMouseState;
 
+		public enum ProjectionMode
+		{
+			Perspective,
+			Isometric
+		}
+
+		private float _isometricSize = 200f; // Default size for isometric projection
+		public ProjectionMode CurrentProjectionMode
+		{
+
+			get => field;
+			set
+			{
+				field = value;
+				UpdateProjectionMatrix();
+			}
+
+		} = ProjectionMode.Perspective;
+
+
 		/// <summary>
 		/// Initializes a new instance of the Camera class.
 		/// The camera is initially positioned and rotated to look at the origin (0,0,0).
@@ -92,16 +112,32 @@ namespace _3D
 		}
 
 		/// <summary>
-		/// Updates the camera's projection matrix. Call this if the viewport size changes.
+		/// Updates the camera's projection matrix. Call this if the viewport size changes or the projection mode changes.
 		/// </summary>
 		public void UpdateProjectionMatrix()
 		{
-			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
-				FieldOfView,
-				_aspectRatio,
-				_nearPlaneDistance,
-				_farPlaneDistance
-			);
+			if (CurrentProjectionMode == ProjectionMode.Perspective)
+			{
+				ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
+					FieldOfView,
+					_aspectRatio,
+					_nearPlaneDistance,
+					_farPlaneDistance
+				);
+			}
+			else if (CurrentProjectionMode == ProjectionMode.Isometric)
+			{
+				float halfSize = _isometricSize / 2;
+
+				ProjectionMatrix = Matrix.CreateOrthographicOffCenter(
+					-halfSize * _aspectRatio,
+					halfSize * _aspectRatio,
+					-halfSize,
+					halfSize,
+					_nearPlaneDistance,
+					_farPlaneDistance
+				);
+			}
 		}
 
 		/// <summary>

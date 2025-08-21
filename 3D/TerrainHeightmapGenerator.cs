@@ -1,5 +1,3 @@
-using System;
-
 namespace _3D
 {
 	public static class TerrainHeightmapGenerator

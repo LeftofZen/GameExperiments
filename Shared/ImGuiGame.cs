@@ -57,11 +57,12 @@ namespace Shared
 
 		protected override void Draw(GameTime gameTime)
 		{
+			base.Draw(gameTime);
+
 			GuiRenderer.BeginLayout(gameTime);
 			DrawImGui(gameTime);
 			GuiRenderer.EndLayout();
 
-			base.Draw(gameTime);
 		}
 
 		protected virtual void DrawImGui(GameTime gameTime)

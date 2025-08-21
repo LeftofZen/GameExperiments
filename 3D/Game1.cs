@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Shared;
-using Shared.Components;
 using System.Collections.Generic;
 
 namespace _3D
@@ -17,6 +16,7 @@ namespace _3D
 		Vector3[,] terrainNormals;
 		BasicEffect terrainEffect;
 		BasicEffect treeEffect;
+		bool drawWireframe;
 
 		Effect basicShader;
 
@@ -36,14 +36,15 @@ namespace _3D
 		List<TreeInstance> Trees = new();
 
 		// Lighting controls
+		Vector3 ambientLightColor = new(0.2f, 0.2f, 0.2f);
+		Vector3 diffuseLightColor = new(0.8f, 0.8f, 0.8f);
+
 		Vector3 terrainSpecularColor = new(0.2f, 0.2f, 0.2f);
 		float terrainSpecularPower = 8f;
+		Vector3 terrainEmissiveColor = new(0.0f, 0.0f, 0.0f);
+
 		Vector3 treeSpecularColor = new(0.2f, 0.2f, 0.2f);
 		float treeSpecularPower = 8f;
-		Vector3 ambientLightColor = new(0.2f, 0.2f, 0.2f);
-		Vector3 terrainDiffuseColor = new(0.8f, 0.8f, 0.8f);
-		Vector3 terrainEmissiveColor = new(0.0f, 0.0f, 0.0f);
-		Vector3 treeDiffuseColor = new(0.8f, 0.8f, 0.8f);
 		Vector3 treeEmissiveColor = new(0.0f, 0.0f, 0.0f);
 
 		public Game1()
@@ -78,7 +79,7 @@ namespace _3D
 			treeEffect.EnableDefaultLighting();
 
 			// Load the custom shader
-			basicShader = Content.Load<Effect>("PixelShader");
+			basicShader = Content.Load<Effect>("TestShader");
 		}
 
 		void RegenerateMap(TerrainGenParameters terrainParams)
@@ -137,8 +138,8 @@ namespace _3D
 
 			GraphicsDevice.Clear(Color.SteelBlue);
 
-			DrawTerrain();
-			//DrawTerrainPixelShader();
+			//DrawTerrain();
+			DrawTerrainPixelShader();
 
 			DrawTrees();
 			DrawAxes();
@@ -156,11 +157,22 @@ namespace _3D
 					ImGui.Text("Camera Position: " + _camera.Position);
 					ImGui.Text("Camera Rotation: " + _camera.Rotation);
 
+					ImGui.Checkbox("Wireframe", ref drawWireframe);
+
 					// Field of View control (degrees for user, radians internally)
 					var fovDegrees = MathHelper.ToDegrees(_camera.FieldOfView);
 					if (ImGui.SliderFloat("Field of View", ref fovDegrees, 10f, 120f, "%.1f deg"))
 					{
 						_camera.FieldOfView = MathHelper.ToRadians(fovDegrees);
+					}
+
+					if (ImGui.RadioButton("Perspective", _camera.CurrentProjectionMode == Camera3D.ProjectionMode.Perspective))
+					{
+						_camera.CurrentProjectionMode = Camera3D.ProjectionMode.Perspective;
+					}
+					if (ImGui.RadioButton("Isometric", _camera.CurrentProjectionMode == Camera3D.ProjectionMode.Isometric))
+					{
+						_camera.CurrentProjectionMode = Camera3D.ProjectionMode.Isometric;
 					}
 				}
 
@@ -248,10 +260,10 @@ namespace _3D
 					}
 					ImGui.SliderFloat("Terrain Specular Power", ref terrainSpecularPower, 1f, 64f);
 
-					var numericsTerrainDiffuseColor = ToNumerics(terrainDiffuseColor);
+					var numericsTerrainDiffuseColor = ToNumerics(diffuseLightColor);
 					if (ImGui.ColorEdit3("Terrain Diffuse", ref numericsTerrainDiffuseColor))
 					{
-						terrainDiffuseColor = new Vector3(numericsTerrainDiffuseColor.X, numericsTerrainDiffuseColor.Y, numericsTerrainDiffuseColor.Z);
+						diffuseLightColor = new Vector3(numericsTerrainDiffuseColor.X, numericsTerrainDiffuseColor.Y, numericsTerrainDiffuseColor.Z);
 					}
 
 					var numericsTerrainEmissiveColor = ToNumerics(terrainEmissiveColor);
@@ -267,12 +279,6 @@ namespace _3D
 						treeSpecularColor = new Vector3(numericsTreeSpecularColor.X, numericsTreeSpecularColor.Y, numericsTreeSpecularColor.Z);
 					}
 					ImGui.SliderFloat("Tree Specular Power", ref treeSpecularPower, 1f, 64f);
-
-					var numericsTreeDiffuseColor = ToNumerics(treeDiffuseColor);
-					if (ImGui.ColorEdit3("Tree Diffuse", ref numericsTreeDiffuseColor))
-					{
-						treeDiffuseColor = new Vector3(numericsTreeDiffuseColor.X, numericsTreeDiffuseColor.Y, numericsTreeDiffuseColor.Z);
-					}
 
 					var numericsTreeEmissiveColor = ToNumerics(treeEmissiveColor);
 					if (ImGui.ColorEdit3("Tree Emissive", ref numericsTreeEmissiveColor))
@@ -384,10 +390,34 @@ namespace _3D
 			terrainEffect.SpecularColor = new Vector3(terrainSpecularColor.X, terrainSpecularColor.Y, terrainSpecularColor.Z);
 			terrainEffect.SpecularPower = terrainSpecularPower;
 			terrainEffect.AmbientLightColor = ambientLightColor;
-			terrainEffect.DiffuseColor = terrainDiffuseColor;
+			terrainEffect.DiffuseColor = diffuseLightColor;
 			terrainEffect.EmissiveColor = terrainEmissiveColor;
+			terrainEffect.LightingEnabled = true;
 
-			foreach (var pass in terrainEffect.CurrentTechnique.Passes)
+			Render(terrainEffect);
+
+			if (drawWireframe)
+			{
+				terrainEffect.LightingEnabled = false;
+				terrainEffect.VertexColorEnabled = false;
+
+				var originalRasterizerState = GraphicsDevice.RasterizerState;
+
+				GraphicsDevice.RasterizerState = new RasterizerState
+				{
+					CullMode = CullMode.None,
+					FillMode = FillMode.WireFrame
+				};
+
+				Render(terrainEffect);
+
+				GraphicsDevice.RasterizerState = originalRasterizerState;
+			}
+		}
+
+		void Render(Effect effect)
+		{
+			foreach (var pass in effect.CurrentTechnique.Passes)
 			{
 				pass.Apply();
 				GraphicsDevice.DrawUserIndexedPrimitives(
@@ -404,22 +434,27 @@ namespace _3D
 
 		private void DrawTerrainPixelShader()
 		{
-			// Set shader parameters
-			basicShader.Parameters["WorldViewProjection"].SetValue(
-				Matrix.Identity * _camera.ViewMatrix * _camera.ProjectionMatrix);
+			//basicShader.CurrentTechnique = basicShader.Techniques["FlatShading"];
+			//basicShader.Parameters["WorldViewProjection"].SetValue(Matrix.Identity * _camera.ViewMatrix * _camera.ProjectionMatrix);
+			//basicShader.Parameters["LightDirection"].SetValue(new Vector3(1, -1, 1)); // Example direction
+			//basicShader.Parameters["AmbientColor"].SetValue(ambientLightColor);
+			//basicShader.Parameters["DiffuseColor"].SetValue(diffuseLightColor);
 
-			foreach (var pass in basicShader.CurrentTechnique.Passes)
+			Render(basicShader);
+
+			if (drawWireframe)
 			{
-				pass.Apply();
-				GraphicsDevice.DrawUserIndexedPrimitives(
-					PrimitiveType.TriangleList,
-					terrainVertices,
-					0,
-					terrainVertices.Length,
-					terrainIndices,
-					0,
-					terrainIndices.Length / 3
-				);
+				var originalRasterizerState = GraphicsDevice.RasterizerState;
+
+				GraphicsDevice.RasterizerState = new RasterizerState
+				{
+					CullMode = CullMode.None,
+					FillMode = FillMode.WireFrame
+				};
+
+				Render(basicShader);
+
+				GraphicsDevice.RasterizerState = originalRasterizerState;
 			}
 		}
 
@@ -429,11 +464,11 @@ namespace _3D
 			treeEffect.Projection = _camera.ProjectionMatrix;
 			treeEffect.World = Matrix.Identity;
 			treeEffect.VertexColorEnabled = true;
+			treeEffect.AmbientLightColor = ambientLightColor;
+			treeEffect.DiffuseColor = diffuseLightColor;
+			treeEffect.EmissiveColor = treeEmissiveColor;
 			treeEffect.SpecularColor = new Vector3(treeSpecularColor.X, treeSpecularColor.Y, treeSpecularColor.Z);
 			treeEffect.SpecularPower = treeSpecularPower;
-			treeEffect.AmbientLightColor = ambientLightColor;
-			treeEffect.DiffuseColor = treeDiffuseColor;
-			treeEffect.EmissiveColor = treeEmissiveColor;
 
 			foreach (var pass in treeEffect.CurrentTechnique.Passes)
 			{

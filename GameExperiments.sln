@@ -105,16 +105,8 @@ Global
 		SolutionGuid = {931AA365-2A64-470F-9CFF-AE4C18F1B370}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SharedContent\SharedContent.projitems*{2f53bd27-fdcb-4ca8-a67c-745eb3a3f105}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{311feb55-98fb-458a-9396-8c3dee43b81e}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{338f7f65-44af-40d9-9a5c-1a1b8bf7a6aa}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{6e905087-1bc4-4f1f-b4a9-e412e412ba2f}*SharedItemsImports = 13
 		SharedContent\SharedContent.projitems*{7ea0cccf-878c-4055-a02f-6c330f624990}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{86ca26ae-7907-472d-82cd-fd7700c644fd}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{aef24d62-3f2b-454f-b194-6c74b239cfb7}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{bf4d72d4-c3d8-491c-b7dc-77349735b9d4}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{f2233114-1738-46b3-8118-83d962fd3cdb}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{f9b1ea38-ea70-4a24-a91f-d4acf5169338}*SharedItemsImports = 5
-		SharedContent\SharedContent.projitems*{fd97d45b-b6aa-495e-bc4a-c4cefdbb3b3b}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
