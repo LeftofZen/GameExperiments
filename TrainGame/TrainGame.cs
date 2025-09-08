@@ -6,6 +6,7 @@ using MonoGame.Extended;
 using Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TrainGame.Track;
 using TrainGame.Train;
 using TrainGame.World;
@@ -21,13 +22,13 @@ namespace TrainGame
 
 		bool debugDrawing { get; set; }
 
-		private const int TileWidth = 128;
-		private const int TileHeight = 64;
+		private const int TileWidth = 64;
+		private const int TileHeight = 32;
 		private MouseState _prevMouse;
 		private List<Vehicle> _trains = new();
 		private int _trainCounter = 1;
 		private int _selectedTrain = -1;
-		private TileType _selectedGroundType = TileType.Dirt;
+		private TerrainType _selectedGroundType = TerrainType.Dirt;
 		private TrackType _selectedTrackType = TrackType.Straight;
 		private TrackDirection _selectedTrackDirection = TrackDirection.EastWest;
 		private bool _placingTrack = true;
@@ -41,7 +42,7 @@ namespace TrainGame
 		protected override void Initialize()
 		{
 			_camera = new Camera2D();
-			_tileMap = new TileMap(20, 20); // Example size
+			_tileMap = new TileMap(32, 32); // Example size
 			_renderer = new Renderer(SpriteBatch, TileWidth, TileHeight);
 			base.Initialize();
 		}
@@ -58,13 +59,24 @@ namespace TrainGame
 
 			// Camera movement
 			if (keyboardState.IsKeyDown(Keys.Up))
+			{
 				_camera.Position += new Vector2(0, -_camera.MovementSpeed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			}
+
 			if (keyboardState.IsKeyDown(Keys.Down))
+			{
 				_camera.Position += new Vector2(0, _camera.MovementSpeed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			}
+
 			if (keyboardState.IsKeyDown(Keys.Left))
+			{
 				_camera.Position += new Vector2(-_camera.MovementSpeed, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			}
+
 			if (keyboardState.IsKeyDown(Keys.Right))
+			{
 				_camera.Position += new Vector2(_camera.MovementSpeed, 0) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			}
 
 			// Camera zoom
 			var previousZoom = _camera.Zoom;
@@ -86,19 +98,16 @@ namespace TrainGame
 				var (mouseTileX, mouseTileY) = _camera.ScreenToIsoTile(mouse.X, mouse.Y, _tileMap.Width, TileWidth, TileHeight);
 				if (mouseTileX >= 0 && mouseTileY >= 0 && mouseTileX < _tileMap.Width && mouseTileY < _tileMap.Height)
 				{
+					var tile = _tileMap.Tiles[mouseTileX, mouseTileY];
 					if (_placingTrack)
 					{
-						var tile = _tileMap.Tiles[mouseTileX, mouseTileY];
-						tile.Type = TileType.Track;
-						tile.TrackType = _selectedTrackType;
-						tile.TrackDirection = _selectedTrackDirection;
+						// Add or replace a TrackLayer on this tile
+						tile.AddLayer(new TrackLayer { TrackType = _selectedTrackType, TrackDirection = _selectedTrackDirection });
 					}
 					else
 					{
-						var tile = _tileMap.Tiles[mouseTileX, mouseTileY];
-						tile.Type = _selectedGroundType;
-						tile.TrackType = TrackType.None;
-						tile.TrackDirection = TrackDirection.None;
+						var tl = tile.Layers.SingleOrDefault(x => x is TerrainLayer) as TerrainLayer;
+						tl.Terrain = _selectedGroundType; // Default to Dirt if no terrain layer
 					}
 
 					RebuildTrackGraph();
@@ -111,7 +120,7 @@ namespace TrainGame
 				var (tileX, tileY) = _camera.ScreenToIsoTile(mouse.X, mouse.Y, _tileMap.Width, TileWidth, TileHeight);
 				if (tileX >= 0 && tileY >= 0 && tileX < _tileMap.Width && tileY < _tileMap.Height)
 				{
-					if (_tileMap.Tiles[tileX, tileY].Type == TileType.Track && !_trains.Exists(t => t.TileX == tileX && t.TileY == tileY))
+					if (_tileMap.Tiles[tileX, tileY].HasTrack() && !_trains.Exists(t => t.TileX == tileX && t.TileY == tileY))
 					{
 						_trains.Add(new Vehicle(tileX, tileY, $"Train {_trainCounter++}"));
 					}
@@ -262,123 +271,140 @@ namespace TrainGame
 			}
 			ImGui.End();
 
-			ImGui.Begin("Mouse Position");
+			ImGui.Begin("Mouse");
+			{
+				var mouseState = Mouse.GetState();
+				ImGui.Text($"Screen Position: {mouseState.X}, {mouseState.Y}");
 
-			var mouseState = Mouse.GetState();
-			ImGui.Text($"Screen Position: {mouseState.X}, {mouseState.Y}");
+				var (tileX, tileY) = _camera.ScreenToIsoTile(mouseState.X, mouseState.Y, _tileMap.Width, TileWidth, TileHeight);
+				ImGui.Text($"Game Position: {tileX}, {tileY}");
 
-			var (tileX, tileY) = _camera.ScreenToIsoTile(mouseState.X, mouseState.Y, _tileMap.Width, TileWidth, TileHeight);
-			ImGui.Text($"Game Position: {tileX}, {tileY}");
+				ImGui.BeginListBox("Layers");
+				if (tileX >= 0 && tileY >= 0 && tileX < _tileMap.Width && tileY < _tileMap.Height)
+				{
+					foreach (var layer in _tileMap.Tiles[tileX, tileY].Layers)
+					{
+						ImGui.Text(layer.ToString());
+					}
+				}
+				else
+				{
+					ImGui.Text("Out of bounds");
+				}
+				ImGui.EndListBox();
+			}
+			ImGui.End();
 
-			ImGui.Text($"Camera Position:{_camera.Position}");
-			ImGui.Text($"Camera Zoom:{_camera.Zoom}");
-			ImGui.Text($"Camera Rotation:{_camera.Rotation}");
-
+			ImGui.Begin("Camera");
+			{
+				ImGui.Text($"Camera Position:{_camera.Position}");
+				ImGui.Text($"Camera Zoom:{_camera.Zoom}");
+				ImGui.Text($"Camera Rotation:{_camera.Rotation}");
+			}
 			ImGui.End();
 
 			ImGui.Begin("Trains");
-			for (var i = 0; i < _trains.Count; i++)
 			{
-				var train = _trains[i];
-				var selected = i == _selectedTrain;
-				if (ImGui.Selectable($"{train.Name} ({train.State})", selected))
+				for (var i = 0; i < _trains.Count; i++)
 				{
-					_selectedTrain = i;
-				}
-			}
-
-			if (_selectedTrain >= 0 && _selectedTrain < _trains.Count)
-			{
-				var train = _trains[_selectedTrain];
-				ImGui.Begin($"Train Controls: {train.Name}");
-				if (ImGui.Button(train.State == TrainState.Stopped ? "Start" : "Stop"))
-				{
-					train.State = train.State == TrainState.Stopped ? TrainState.Moving : TrainState.Stopped;
-				}
-
-				// Fix for CS0206: Use a local variable to modify the Speed property
-				var speed = train.Speed;
-				ImGui.SliderFloat("Max Speed", ref speed, 0.5f, 10f);
-				train.Speed = speed;
-
-				ImGui.Text($"Position: {train.TileX}, {train.TileY}");
-				ImGui.Text($"Destination: {train.DestX}, {train.DestY}");
-
-				// Set destination by clicking a track tile
-				ImGui.Text("Set Destination: Click a track tile on the map");
-				if (ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Left))
-				{
-					var mouse = Mouse.GetState();
-					var (isoTileX, isoTileY) = _camera.ScreenToIsoTile(mouse.X, mouse.Y, _tileMap.Width, TileWidth, TileHeight);
-					if (isoTileX >= 0 && isoTileY >= 0 && isoTileX < _tileMap.Width && isoTileY < _tileMap.Height)
+					var train = _trains[i];
+					var selected = i == _selectedTrain;
+					if (ImGui.Selectable($"{train.Name} ({train.State})", selected))
 					{
-						if (_tileMap.Tiles[isoTileX, isoTileY].Type == TileType.Track)
+						_selectedTrain = i;
+					}
+				}
+
+				if (_selectedTrain >= 0 && _selectedTrain < _trains.Count)
+				{
+					var train = _trains[_selectedTrain];
+					ImGui.Begin($"Train Controls: {train.Name}");
+					if (ImGui.Button(train.State == TrainState.Stopped ? "Start" : "Stop"))
+					{
+						train.State = train.State == TrainState.Stopped ? TrainState.Moving : TrainState.Stopped;
+					}
+
+					// Fix for CS0206: Use a local variable to modify the Speed property
+					var speed = train.Speed;
+					ImGui.SliderFloat("Max Speed", ref speed, 0.5f, 10f);
+					train.Speed = speed;
+
+					ImGui.Text($"Position: {train.TileX}, {train.TileY}");
+					ImGui.Text($"Destination: {train.DestX}, {train.DestY}");
+
+					// Set destination by clicking a track tile
+					ImGui.Text("Set Destination: Click a track tile on the map");
+					if (ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Left))
+					{
+						var mouse = Mouse.GetState();
+						var (isoTileX, isoTileY) = _camera.ScreenToIsoTile(mouse.X, mouse.Y, _tileMap.Width, TileWidth, TileHeight);
+						if (isoTileX >= 0 && isoTileY >= 0 && isoTileX < _tileMap.Width && isoTileY < _tileMap.Height)
 						{
-							train.DestX = isoTileX;
-							train.DestY = isoTileY;
+							if (_tileMap.Tiles[isoTileX, isoTileY].HasTrack())
+							{
+								train.DestX = isoTileX;
+								train.DestY = isoTileY;
+							}
 						}
 					}
+
+					ImGui.End();
 				}
-
-				ImGui.End();
 			}
-
 			ImGui.End();
+
 			ImGui.Begin("Tile Placement");
-			if (ImGui.RadioButton("Place Track", _placingTrack))
 			{
-				_placingTrack = true;
-			}
-
-			ImGui.SameLine();
-			if (ImGui.RadioButton("Place Ground", !_placingTrack))
-			{
-				_placingTrack = false;
-			}
-
-			if (_placingTrack)
-			{
-				ImGui.Text("Track Type:");
-				foreach (TrackType type in Enum.GetValues(typeof(TrackType)))
+				if (ImGui.RadioButton("Place Track", _placingTrack))
 				{
-					var label = type.ToString();
-					if (ImGui.RadioButton(label, type == _selectedTrackType))
-					{
-						_selectedTrackType = type;
-					}
-
-					ImGui.SameLine();
+					_placingTrack = true;
 				}
 
-				ImGui.Text("Direction:");
-				foreach (TrackDirection dir in Enum.GetValues(typeof(TrackDirection)))
+				ImGui.SameLine();
+				if (ImGui.RadioButton("Place Ground", !_placingTrack))
 				{
-					var label = dir.ToString();
-					if (ImGui.RadioButton(label, dir == _selectedTrackDirection))
-					{
-						_selectedTrackDirection = dir;
-					}
-
-					ImGui.SameLine();
+					_placingTrack = false;
 				}
-			}
-			else
-			{
-				ImGui.Text("Ground Type:");
-				foreach (TileType type in Enum.GetValues(typeof(TileType)))
+
+				if (_placingTrack)
 				{
-					if (type == TileType.Track)
+					ImGui.Text("Track Type:");
+					foreach (TrackType type in Enum.GetValues(typeof(TrackType)))
 					{
-						continue; // Skip track type
+						var label = type.ToString();
+						if (ImGui.RadioButton(label, type == _selectedTrackType))
+						{
+							_selectedTrackType = type;
+						}
+
+						ImGui.SameLine();
 					}
 
-					var label = type.ToString();
-					if (ImGui.RadioButton(label, type == _selectedGroundType))
+					ImGui.Text("Direction:");
+					foreach (TrackDirection dir in Enum.GetValues(typeof(TrackDirection)))
 					{
-						_selectedGroundType = type;
-					}
+						var label = dir.ToString();
+						if (ImGui.RadioButton(label, dir == _selectedTrackDirection))
+						{
+							_selectedTrackDirection = dir;
+						}
 
-					ImGui.SameLine();
+						ImGui.SameLine();
+					}
+				}
+				else
+				{
+					ImGui.Text("Ground Type:");
+					foreach (TerrainType type in Enum.GetValues(typeof(TerrainType)))
+					{
+						var label = type.ToString();
+						if (ImGui.RadioButton(label, type == _selectedGroundType))
+						{
+							_selectedGroundType = type;
+						}
+
+						ImGui.SameLine();
+					}
 				}
 			}
 
@@ -387,7 +413,7 @@ namespace TrainGame
 
 		private bool IsTrack(int x, int y)
 		{
-			return x >= 0 && y >= 0 && x < _tileMap.Width && y < _tileMap.Height && _tileMap.Tiles[x, y].Type == TileType.Track;
+			return x >= 0 && y >= 0 && x < _tileMap.Width && y < _tileMap.Height && _tileMap.Tiles[x, y].HasTrack();
 		}
 
 		private void RebuildTrackGraph()

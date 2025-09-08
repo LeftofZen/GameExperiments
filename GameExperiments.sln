@@ -108,5 +108,7 @@ Global
 		SharedContent\SharedContent.projitems*{338f7f65-44af-40d9-9a5c-1a1b8bf7a6aa}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{6e905087-1bc4-4f1f-b4a9-e412e412ba2f}*SharedItemsImports = 13
 		SharedContent\SharedContent.projitems*{7ea0cccf-878c-4055-a02f-6c330f624990}*SharedItemsImports = 5
+		SharedContent\SharedContent.projitems*{f2233114-1738-46b3-8118-83d962fd3cdb}*SharedItemsImports = 5
+		SharedContent\SharedContent.projitems*{fd97d45b-b6aa-495e-bc4a-c4cefdbb3b3b}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -1,13 +1,13 @@
 namespace TrainGame.World
 {
-	public enum TileType
+	public enum TerrainType
 	{
-		Empty,
+		Grass,
+		Grass2,
 		Sand,
 		Dirt,
 		Rock,
 		Ice,
 		Gravel,
-		Track,
 	}
 }

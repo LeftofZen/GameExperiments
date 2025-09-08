@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TrainGame.Track;
 
 namespace TrainGame.World
@@ -32,18 +33,32 @@ namespace TrainGame.World
 				for (var y = 0; y < tileMap.Height; y++)
 				{
 					var tile = tileMap.Tiles[x, y];
-					if (tile.Type == TileType.Track)
-					{
-						var connections = CountTrackConnections(tileMap, x, y);
-						tile.IsIntersection = connections > 2;
-						if (tile.IsIntersection || connections == 1)
-						{
-							var node = new TrackNode { X = x, Y = y };
-							_trackNodes[(x, y)] = node;
-						}
-					}
+					//if (tile.HasTrack())
+					//{
+					//	var connections = CountTrackConnections(tileMap, x, y);
+					//	var tl = tile.TrackLayers;
+					//	if (tl == null)
+					//	{
+					//		if (connections > 2)
+					//		{
+					//			tl = new TrackLayer { IsIntersection = true };
+					//			tile.AddLayer(tl);
+					//		}
+					//	}
+					//	else
+					//	{
+					//		tl.IsIntersection = connections > 2;
+					//	}
+
+					//	if ((tl != null && tl.IsIntersection) || connections == 1)
+					//	{
+					//		var node = new TrackNode { X = x, Y = y };
+					//		_trackNodes[(x, y)] = node;
+					//	}
+					//}
 				}
 			}
+
 			// 2. Build edges between nodes (walk straight uninterrupted track sections)
 			foreach (var node in _trackNodes.Values)
 			{
@@ -54,7 +69,12 @@ namespace TrainGame.World
 					while (true)
 					{
 						(nx, ny) = StepInDirection(nx, ny, dir);
-						if (!tileMap.Tiles[nx, ny].Type.Equals(TileType.Track))
+						if (nx < 0 || ny < 0 || nx >= tileMap.Width || ny >= tileMap.Height)
+						{
+							break;
+						}
+
+						if (!tileMap.Tiles[nx, ny].HasTrack())
 						{
 							break;
 						}
@@ -145,7 +165,7 @@ namespace TrainGame.World
 			foreach (var dir in GetTrackDirections(tileMap, x, y))
 			{
 				var (nx, ny) = StepInDirection(x, y, dir);
-				if (nx >= 0 && ny >= 0 && nx < tileMap.Width && ny < tileMap.Height && tileMap.Tiles[nx, ny].Type == TileType.Track)
+				if (nx >= 0 && ny >= 0 && nx < tileMap.Width && ny < tileMap.Height && tileMap.Tiles[nx, ny].HasTrack())
 				{
 					count++;
 				}
@@ -157,43 +177,49 @@ namespace TrainGame.World
 		private IEnumerable<TrackDirection> GetTrackDirections(TileMap tileMap, int x, int y)
 		{
 			var tile = tileMap.Tiles[x, y];
-			switch (tile.TrackType)
+			var tls = tile.TrackLayers;
+
+			foreach (var tl in tls)
 			{
-				case TrackType.Straight:
-					if (tile.TrackDirection == TrackDirection.EastWest)
-					{
+
+				switch (tl.TrackType)
+				{
+					case TrackType.Straight:
+						if (tl.TrackDirection == TrackDirection.EastWest)
+						{
+							yield return TrackDirection.EastWest;
+							yield return TrackDirection.EastWest; // both directions
+						}
+
+						if (tl.TrackDirection == TrackDirection.NorthSouth)
+						{
+							yield return TrackDirection.NorthSouth;
+							yield return TrackDirection.NorthSouth;
+						}
+
+						break;
+					case TrackType.Diagonal:
+						if (tl.TrackDirection == TrackDirection.NorthEast) { yield return TrackDirection.NorthEast; }
+
+						if (tl.TrackDirection == TrackDirection.SouthWest) { yield return TrackDirection.SouthWest; }
+
+						if (tl.TrackDirection == TrackDirection.NorthWest) { yield return TrackDirection.NorthWest; }
+
+						if (tl.TrackDirection == TrackDirection.SouthEast) { yield return TrackDirection.SouthEast; }
+
+						break;
+					case TrackType.CurveSmall:
+					case TrackType.CurveLarge:
+					case TrackType.CurveXL_Half:
+						// For curves, use the direction as entry/exit
+						yield return tl.TrackDirection;
+						break;
+					case TrackType.Intersection:
+						// All four cardinal directions
 						yield return TrackDirection.EastWest;
-						yield return TrackDirection.EastWest; // both directions
-					}
-
-					if (tile.TrackDirection == TrackDirection.NorthSouth)
-					{
 						yield return TrackDirection.NorthSouth;
-						yield return TrackDirection.NorthSouth;
-					}
-
-					break;
-				case TrackType.Diagonal:
-					if (tile.TrackDirection == TrackDirection.NorthEast) { yield return TrackDirection.NorthEast; }
-
-					if (tile.TrackDirection == TrackDirection.SouthWest) { yield return TrackDirection.SouthWest; }
-
-					if (tile.TrackDirection == TrackDirection.NorthWest) { yield return TrackDirection.NorthWest; }
-
-					if (tile.TrackDirection == TrackDirection.SouthEast) { yield return TrackDirection.SouthEast; }
-
-					break;
-				case TrackType.CurveSmall:
-				case TrackType.CurveLarge:
-				case TrackType.CurveXL_Half:
-					// For curves, use the direction as entry/exit
-					yield return tile.TrackDirection;
-					break;
-				case TrackType.Intersection:
-					// All four cardinal directions
-					yield return TrackDirection.EastWest;
-					yield return TrackDirection.NorthSouth;
-					break;
+						break;
+				}
 			}
 		}
 

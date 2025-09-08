@@ -2,7 +2,6 @@ namespace TrainGame.Track
 {
 	public enum TrackDirection
 	{
-		None,
 		NorthSouth,
 		EastWest,
 		NorthEast,

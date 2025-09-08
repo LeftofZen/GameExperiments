@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharedContent;
@@ -27,9 +26,13 @@ namespace Fonts
 		bool DrawAllFonts { get; set; }
 		readonly IEnumerable<string> DrawFonts =
 		[
+			FontNames._alagard,
 			FontNames._fs_pixel_sans_unicode_regular,
-			//FontNames._MedodicaRegular,
-			//FontNames._PixelOperator,
+			FontNames._BlockBlueprint,
+			FontNames._bedstead,
+			FontNames._Gridget,
+			FontNames._MedodicaRegular,
+			FontNames._PixelOperator,
 			FontNames._Pixeltype,
 			FontNames._Reactor7
 		];
@@ -181,12 +184,13 @@ namespace Fonts
 
 				var pos = new Vector2(currX, currY);
 				const string printableAsciiChars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+				const string message = "In a dark and stormy night, arcane agents were about.";
 
 				// shadow
 				_spriteBatch.DrawString(
 					font.Value,
-					$"{font.Key} - {printableAsciiChars}",
-					pos - (Vector2.One * Scale),
+					$"{font.Key} - {message}",
+					pos + (Vector2.One * Scale),
 					Palette.Dark,
 					0f,
 					Vector2.Zero,
@@ -195,9 +199,21 @@ namespace Fonts
 					0);
 
 				// highlight
+				//_spriteBatch.DrawString(
+				//	font.Value,
+				//	$"{font.Key} - {printableAsciiChars}",
+				//	pos - (Vector2.One * Scale * 0.5f),
+				//	Palette.Highlight,
+				//	0f,
+				//	Vector2.Zero,
+				//	Scale,
+				//	SpriteEffects.None,
+				//	0);
+
+				// text
 				_spriteBatch.DrawString(
 					font.Value,
-					$"{font.Key} - {printableAsciiChars}",
+					$"{font.Key} - {message}",
 					pos,
 					Palette.Mid,
 					0f,
@@ -209,6 +225,18 @@ namespace Fonts
 				currY += (int)fontSize.Y + spacing;
 				index++;
 			}
+
+			//_spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, width, height);
+			//_spriteBatch.DrawString(
+			//	_fonts[FontNames._PixelOperatorMono],
+			//	"In a dark and stormy night",
+			//	new Vector2(64, 512),
+			//	Palette.Mid,
+			//	0f,
+			//	Vector2.Zero,
+			//	Scale,
+			//	SpriteEffects.None,
+			//	0);
 
 			_spriteBatch.End();
 

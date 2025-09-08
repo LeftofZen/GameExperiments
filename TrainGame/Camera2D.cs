@@ -37,7 +37,7 @@ namespace TrainGame
 		public (int, int) IsoTileToScreen(int tileX, int tileY, int tileMapWidth, int tileWidth, int tileHeight)
 		{
 			// Convert isometric tile coordinates to screen coordinates
-			var screenX = (tileX - tileY) * (tileWidth / 2) - tileWidth / 2;
+			var screenX = ((tileX - tileY) * (tileWidth / 2)) - (tileWidth / 2);
 			var screenY = (tileX + tileY) * (tileHeight / 2);
 			return (screenX, screenY);
 		}
