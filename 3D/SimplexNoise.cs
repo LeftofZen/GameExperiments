@@ -20,7 +20,7 @@ namespace _3D
 
 		static SimplexNoise()
 		{
-			for (int i = 0; i < 512; i++)
+			for (var i = 0; i < 512; i++)
 				perm[i] = permOriginal[i % 256];
 		}
 
@@ -31,42 +31,42 @@ namespace _3D
 		{
 			double n0, n1, n2;
 
-			double s = (xin + yin) * F2;
-			int i = FastFloor(xin + s);
-			int j = FastFloor(yin + s);
+			var s = (xin + yin) * F2;
+			var i = FastFloor(xin + s);
+			var j = FastFloor(yin + s);
 
 			double t = (i + j) * G2;
-			double X0 = i - t;
-			double Y0 = j - t;
-			double x0 = xin - X0;
-			double y0 = yin - Y0;
+			var X0 = i - t;
+			var Y0 = j - t;
+			var x0 = xin - X0;
+			var y0 = yin - Y0;
 
 			int i1, j1;
 			if (x0 > y0) { i1 = 1; j1 = 0; }
 			else { i1 = 0; j1 = 1; }
 
-			double x1 = x0 - i1 + G2;
-			double y1 = y0 - j1 + G2;
-			double x2 = x0 - 1.0 + 2.0 * G2;
-			double y2 = y0 - 1.0 + 2.0 * G2;
+			var x1 = x0 - i1 + G2;
+			var y1 = y0 - j1 + G2;
+			var x2 = x0 - 1.0 + 2.0 * G2;
+			var y2 = y0 - 1.0 + 2.0 * G2;
 
-			int ii = i & 255;
-			int jj = j & 255;
-			double t0 = 0.5 - x0 * x0 - y0 * y0;
+			var ii = i & 255;
+			var jj = j & 255;
+			var t0 = 0.5 - x0 * x0 - y0 * y0;
 			if (t0 < 0) n0 = 0.0;
 			else
 			{
 				t0 *= t0;
 				n0 = t0 * t0 * Grad(perm[ii + perm[jj]], x0, y0);
 			}
-			double t1 = 0.5 - x1 * x1 - y1 * y1;
+			var t1 = 0.5 - x1 * x1 - y1 * y1;
 			if (t1 < 0) n1 = 0.0;
 			else
 			{
 				t1 *= t1;
 				n1 = t1 * t1 * Grad(perm[ii + i1 + perm[jj + j1]], x1, y1);
 			}
-			double t2 = 0.5 - x2 * x2 - y2 * y2;
+			var t2 = 0.5 - x2 * x2 - y2 * y2;
 			if (t2 < 0) n2 = 0.0;
 			else
 			{
@@ -80,9 +80,9 @@ namespace _3D
 
 		private static double Grad(int hash, double x, double y)
 		{
-			int h = hash & 7;
-			double u = h < 4 ? x : y;
-			double v = h < 4 ? y : x;
+			var h = hash & 7;
+			var u = h < 4 ? x : y;
+			var v = h < 4 ? y : x;
 			return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? 2.0 * v : -2.0 * v);
 		}
 	}

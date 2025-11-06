@@ -119,8 +119,8 @@ namespace _3D
 			}
 
 			terrainNormals = new Vector3[width, height];
-			for (int z = 0; z < height; z++)
-				for (int x = 0; x < width; x++)
+			for (var z = 0; z < height; z++)
+				for (var x = 0; x < width; x++)
 					terrainNormals[x, z] = terrainVertices[x + (z * width)].Normal;
 		}
 	}

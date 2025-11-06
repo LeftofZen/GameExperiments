@@ -37,10 +37,33 @@ namespace Shared
 		public enum ProjectionMode
 		{
 			Perspective,
-			Isometric
+			Isometric,
+			Orthographic
 		}
 
 		private float _isometricSize = 200f; // Default size for isometric projection
+		private float _orthographicSize = 100f; // Default size for orthographic projection
+
+		public float OrthographicZoom
+		{
+			get => _orthographicSize;
+			set
+			{
+				_orthographicSize = value;
+				UpdateProjectionMatrix();
+			}
+		}
+
+		public float IsometricZoom
+		{
+			get => _isometricSize;
+			set
+			{
+				_isometricSize = value;
+				UpdateProjectionMatrix();
+			}
+		}
+
 		public ProjectionMode CurrentProjectionMode
 		{
 			get => projectionMode;
@@ -134,6 +157,17 @@ namespace Shared
 					halfSize * _aspectRatio,
 					-halfSize,
 					halfSize,
+					_nearPlaneDistance,
+					_farPlaneDistance
+				);
+			}
+			else if (CurrentProjectionMode == ProjectionMode.Orthographic)
+			{
+				float halfSize = _orthographicSize / 2;
+
+				ProjectionMatrix = Matrix.CreateOrthographic(
+					halfSize * 2 * _aspectRatio,
+					halfSize * 2,
 					_nearPlaneDistance,
 					_farPlaneDistance
 				);

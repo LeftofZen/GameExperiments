@@ -62,7 +62,6 @@ namespace Shared
 			GuiRenderer.BeginLayout(gameTime);
 			DrawImGui(gameTime);
 			GuiRenderer.EndLayout();
-
 		}
 
 		protected virtual void DrawImGui(GameTime gameTime)

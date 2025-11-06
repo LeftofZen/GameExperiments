@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using ImGuiNET;
 
 namespace Shared.ImGuiNet;
 
@@ -70,7 +70,7 @@ public class ImGuiRenderer
 	{
 		// Get font texture from ImGui
 		var io = ImGui.GetIO();
-		io.Fonts.GetTexDataAsRGBA32(out byte* pixelData, out int width, out int height, out int bytesPerPixel);
+		io.Fonts.GetTexDataAsRGBA32(out byte* pixelData, out var width, out var height, out var bytesPerPixel);
 
 		// Copy the data to a managed array
 		var pixels = new byte[width * height * bytesPerPixel];
@@ -296,7 +296,7 @@ public class ImGuiRenderer
 		_graphicsDevice.BlendFactor = Color.White;
 		_graphicsDevice.BlendState = BlendState.NonPremultiplied;
 		_graphicsDevice.RasterizerState = _rasterizerState;
-		_graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+		_graphicsDevice.DepthStencilState = DepthStencilState.None;
 
 		// Handle cases of screen coordinates != from framebuffer coordinates (e.g. retina displays)
 		drawData.ScaleClipRects(ImGui.GetIO().DisplayFramebufferScale);
@@ -340,10 +340,10 @@ public class ImGuiRenderer
 		}
 
 		// Copy ImGui's vertices and indices to a set of managed byte arrays
-		int vtxOffset = 0;
-		int idxOffset = 0;
+		var vtxOffset = 0;
+		var idxOffset = 0;
 
-		for (int n = 0; n < drawData.CmdListsCount; n++)
+		for (var n = 0; n < drawData.CmdListsCount; n++)
 		{
 			ImDrawListPtr cmdList = drawData.CmdLists[n];
 
@@ -368,14 +368,14 @@ public class ImGuiRenderer
 		_graphicsDevice.SetVertexBuffer(_vertexBuffer);
 		_graphicsDevice.Indices = _indexBuffer;
 
-		int vtxOffset = 0;
-		int idxOffset = 0;
+		var vtxOffset = 0;
+		var idxOffset = 0;
 
-		for (int n = 0; n < drawData.CmdListsCount; n++)
+		for (var n = 0; n < drawData.CmdListsCount; n++)
 		{
 			ImDrawListPtr cmdList = drawData.CmdLists[n];
 
-			for (int cmdi = 0; cmdi < cmdList.CmdBuffer.Size; cmdi++)
+			for (var cmdi = 0; cmdi < cmdList.CmdBuffer.Size; cmdi++)
 			{
 				ImDrawCmdPtr drawCmd = cmdList.CmdBuffer[cmdi];
 
