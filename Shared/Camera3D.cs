@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace _3D
+namespace Shared
 {
 	public class Camera3D
 	{
@@ -13,14 +13,14 @@ namespace _3D
 
 		public float FieldOfView
 		{
-			get => field;
+			get => _fieldOfView;
 			set
 			{
-				field = value;
+				_fieldOfView = value;
 				UpdateProjectionMatrix();
 			}
 		}
-
+		private float _fieldOfView;
 		private float _aspectRatio;
 		private float _nearPlaneDistance = 0.1f;
 		private float _farPlaneDistance = float.MaxValue;
@@ -43,15 +43,15 @@ namespace _3D
 		private float _isometricSize = 200f; // Default size for isometric projection
 		public ProjectionMode CurrentProjectionMode
 		{
-
-			get => field;
+			get => projectionMode;
 			set
 			{
-				field = value;
+				projectionMode = value;
 				UpdateProjectionMatrix();
 			}
 
-		} = ProjectionMode.Perspective;
+		}
+		private ProjectionMode projectionMode = ProjectionMode.Perspective;
 
 
 		/// <summary>
@@ -279,5 +279,4 @@ namespace _3D
 			previousMouseState = currentMouseState;
 		}
 	}
-
 }

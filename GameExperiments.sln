@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11201.2 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSystem", "LSystem\LSystem.csproj", "{BF4D72D4-C3D8-491C-B7DC-77349735B9D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainGame", "TrainGame\TrainGame.csproj", "{F2233114-1738-46B3-8118-83D962FD3CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DTrain", "3DTrain\3DTrain.csproj", "{0358E92A-F506-488A-8144-CF19DBCDED79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{F2233114-1738-46B3-8118-83D962FD3CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2233114-1738-46B3-8118-83D962FD3CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2233114-1738-46B3-8118-83D962FD3CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0358E92A-F506-488A-8144-CF19DBCDED79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0358E92A-F506-488A-8144-CF19DBCDED79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0358E92A-F506-488A-8144-CF19DBCDED79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0358E92A-F506-488A-8144-CF19DBCDED79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		SolutionGuid = {931AA365-2A64-470F-9CFF-AE4C18F1B370}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedContent\SharedContent.projitems*{0358e92a-f506-488a-8144-cf19dbcded79}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{338f7f65-44af-40d9-9a5c-1a1b8bf7a6aa}*SharedItemsImports = 5
 		SharedContent\SharedContent.projitems*{6e905087-1bc4-4f1f-b4a9-e412e412ba2f}*SharedItemsImports = 13
 		SharedContent\SharedContent.projitems*{7ea0cccf-878c-4055-a02f-6c330f624990}*SharedItemsImports = 5
