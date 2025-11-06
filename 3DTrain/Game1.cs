@@ -12,7 +12,7 @@ namespace _3DTrain
 {
 	public enum TileLayerType
 	{
-		Surface, Station, Track, Tree, Building, Vehicle
+		Surface, Station, Track, Tree, Building
 	}
 
 	public class TileLayerItem
@@ -47,6 +47,8 @@ namespace _3DTrain
 		int _tilesetRows = 42;     // Number of tiles down
 		int _tileWidth = 64;      // Width of each tile in pixels
 		int _tileHeight = 64;     // Height of each tile in pixels (for one tile)
+
+		Vector3 Train = new Vector3(0f, 10f, 0f); // Start at center, height 10 (at the station)
 
 		// Grid settings
 		bool _showGrid = true;
@@ -118,7 +120,8 @@ namespace _3DTrain
 			{
 				for (var x = 0; x < _mapWidth; x++)
 				{
-					baseHeights[x, z] = (float)random.NextDouble() * 20f;
+					//baseHeights[x, z] = (float)random.NextDouble() * 10f;
+					baseHeights[x, z] = 10f;
 				}
 			}
 
@@ -163,12 +166,14 @@ namespace _3DTrain
 				{
 					var height = Math.Clamp((int)Math.Round(baseHeights[x, z]), 1, 100);
 					var column = new TileColumn() { Items = [new() { Type = TileLayerType.Surface, Height = height }] };
-					if (x == 16 && z is 16 or 17 or 18)
+					if (x == 16 && z is 16 or 17 or 18 or 19 or 20)
 					{
 						// Place a station at the center
-						column.Items.Add(new TileLayerItem { Type = TileLayerType.Station, Height = height });
+						column.Items[0].Height = 10; // Flatten ground for station
+						column.Items.Add(new TileLayerItem { Type = TileLayerType.Track, Height = 10 });
+						column.Items.Add(new TileLayerItem { Type = TileLayerType.Station, Height = 10 });
 					}
-					else if (random.NextDouble() < 0.1)
+					else if (random.NextDouble() < 0.05)
 					{
 						// Randomly place some trees
 						column.Items.Add(new TileLayerItem { Type = TileLayerType.Tree, Height = height });
@@ -188,6 +193,12 @@ namespace _3DTrain
 			}
 
 			_camera.HandleInput(gameTime);
+
+			Train += new Vector3(0f, 0f, 0.02f);
+			if (Train.Z > 10f)
+			{
+				Train.Z = -2f;
+			}
 
 			base.Update(gameTime);
 		}
@@ -389,6 +400,27 @@ namespace _3DTrain
 			// Build billboard batch
 			var billboards = new List<BillboardData>();
 
+			// Render the train
+			var trainTileIndex = 222;
+			trainTileIndex = MathHelper.Clamp(trainTileIndex, 0, _tilesetColumns * _tilesetRows - 1);
+
+			var trainTileX = trainTileIndex % _tilesetColumns;
+			var trainTileY = trainTileIndex / _tilesetColumns;
+
+			billboards.Add(new BillboardData
+			{
+				Position = Train + new Vector3(0, 0.38f, 0),
+				Size = new Vector2(billboardWorldWidth / 2f, billboardWorldHeight / 2f),
+				SourceRectangle = new Rectangle(
+					trainTileX * _tileWidth,
+					trainTileY * _tileHeight,
+					_tileWidth,
+					_tileHeight
+				),
+				TextureSize = new Vector2(_tileset.Width, _tileset.Height),
+				Color = Color.White
+			});
+
 			for (var z = 0; z < _mapHeight; z++)
 			{
 				for (var x = 0; x < _mapWidth; x++)
@@ -450,12 +482,124 @@ namespace _3DTrain
 						}
 						else if (layer.Type == TileLayerType.Station)
 						{
-							// Render station at specified height
+							// Render station at specified height - stations have multiple parts with specific render order
 							var worldY = (layer.Height * _tileHeightInWorld);
-							var position = new Vector3(worldX, worldY - 0.9f, worldZ); // custom height offset
 
-							// Station tile index
-							int tileIndex = 172;
+							// Station consists of multiple billboards:
+							// 1. Base (foundation)
+							// 2. Back platform
+							// 3. Track (rendered separately by Track layer)
+							// 4. Front platform
+							// 5. Roof
+
+							// To achieve proper layering, we'll use small Z-offsets in the forward direction
+							// Forward direction for billboards is (-1, 0, 1) normalized
+							var forwardDir = Vector3.Normalize(new Vector3(-1, 0, 1));
+
+							// 1. Station Base (175) - renders first (furthest back)
+							var basePosition = new Vector3(worldX, worldY - 0.9f, worldZ);
+							var baseTileIndex = 175;
+							baseTileIndex = MathHelper.Clamp(baseTileIndex, 0, _tilesetColumns * _tilesetRows - 1);
+
+							var baseTileX = baseTileIndex % _tilesetColumns;
+							var baseTileY = baseTileIndex / _tilesetColumns;
+
+							billboards.Add(new BillboardData
+							{
+								Position = basePosition,
+								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
+								SourceRectangle = new Rectangle(
+									baseTileX * _tileWidth,
+									baseTileY * _tileHeight,
+									_tileWidth,
+									_tileHeight
+								),
+								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
+								Color = Color.White
+							});
+
+							// 2. Back Platform - renders behind track 
+							var backPlatformPosition = new Vector3(worldX - 0.2f, worldY - 0.3f, worldZ) + forwardDir * 0.8f;
+							var backPlatformTileIndex = 253; // Define your back platform tile
+							backPlatformTileIndex = MathHelper.Clamp(backPlatformTileIndex, 0, _tilesetColumns * _tilesetRows - 1);
+
+							var backPlatformTileX = backPlatformTileIndex % _tilesetColumns;
+							var backPlatformTileY = backPlatformTileIndex / _tilesetColumns;
+
+							billboards.Add(new BillboardData
+							{
+								Position = backPlatformPosition,
+								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
+								SourceRectangle = new Rectangle(
+									backPlatformTileX * _tileWidth,
+									backPlatformTileY * _tileHeight,
+									_tileWidth,
+									_tileHeight
+								),
+								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
+								Color = Color.White
+							});
+
+							// Note: Track (174) is rendered by the Track layer type
+
+							// 3. Front Platform - renders in front of track
+							var frontPlatformPosition = new Vector3(worldX + 1.6f, worldY - 0.1f, worldZ + 0.2f) + forwardDir * 0.4f;
+							var frontPlatformTileIndex = 253; // Define your front platform tile
+							frontPlatformTileIndex = MathHelper.Clamp(frontPlatformTileIndex, 0, _tilesetColumns * _tilesetRows - 1);
+
+							var frontPlatformTileX = frontPlatformTileIndex % _tilesetColumns;
+							var frontPlatformTileY = frontPlatformTileIndex / _tilesetColumns;
+
+							billboards.Add(new BillboardData
+							{
+								Position = frontPlatformPosition,
+								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
+								SourceRectangle = new Rectangle(
+									frontPlatformTileX * _tileWidth,
+									frontPlatformTileY * _tileHeight,
+									_tileWidth,
+									_tileHeight
+								),
+								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
+								Color = Color.White
+							});
+
+							// 4. Roof - renders last (on top of everything)
+							var roofPosition = new Vector3(worldX, worldY + 1f, worldZ) + forwardDir * 0.0001f;
+							var roofTileIndex = 303; // Define your roof tile
+							roofTileIndex = MathHelper.Clamp(roofTileIndex, 0, _tilesetColumns * _tilesetRows - 1);
+
+							var roofTileX = roofTileIndex % _tilesetColumns;
+							var roofTileY = roofTileIndex / _tilesetColumns;
+
+							billboards.Add(new BillboardData
+							{
+								Position = roofPosition,
+								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
+								SourceRectangle = new Rectangle(
+									roofTileX * _tileWidth,
+									roofTileY * _tileHeight,
+									_tileWidth,
+									_tileHeight
+								),
+								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
+								Color = Color.White
+							});
+						}
+						else if (layer.Type == TileLayerType.Track)
+						{
+							if (column.Any(x => x.Type == TileLayerType.Station))
+							{
+								// Station track is rendered as part of the station - skip here
+								continue;
+							}
+
+							// Render track at specified height
+							var worldY = layer.Height * _tileHeightInWorld;
+							var position = new Vector3(worldX, worldY - 0.6f, worldZ);
+
+							// Track tile index - you can specify this
+							var tileIndex = 174;
 
 							// Clamp tile index
 							tileIndex = MathHelper.Clamp(tileIndex, 0, _tilesetColumns * _tilesetRows - 1);
@@ -466,16 +610,15 @@ namespace _3DTrain
 
 							var sourceRect = new Rectangle(
 								tileX * _tileWidth,
-								tileY * _tileHeight,
+								tileY * _tilesetRows - _tileHeight,
 								_tileWidth,
 								_tileHeight
 							);
 
-							var customTileHeight = _tileHeight / 2;
 							billboards.Add(new BillboardData
 							{
 								Position = position,
-								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
+								Size = new Vector2(billboardWorldWidth, billboardWorldHeight) * 0.7f,
 								SourceRectangle = sourceRect,
 								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
 								Color = Color.White
@@ -488,39 +631,7 @@ namespace _3DTrain
 							var position = new Vector3(worldX, worldY, worldZ);
 
 							// Tree tile index is 12
-							int tileIndex = 12;
-
-							// Clamp tile index
-							tileIndex = MathHelper.Clamp(tileIndex, 0, _tilesetColumns * _tilesetRows - 1);
-
-							// Calculate UV coordinates for the selected tile
-							var tileX = tileIndex % _tilesetColumns;
-							var tileY = tileIndex / _tilesetColumns;
-
-							var sourceRect = new Rectangle(
-								tileX * _tileWidth,
-								tileY * _tileHeight,
-								_tileWidth,
-								_tileHeight
-							);
-
-							billboards.Add(new BillboardData
-							{
-								Position = position,
-								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
-								SourceRectangle = sourceRect,
-								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
-								Color = Color.White
-							});
-						}
-						else if (layer.Type == TileLayerType.Track)
-						{
-							// Render track at specified height
-							var worldY = layer.Height * _tileHeightInWorld;
-							var position = new Vector3(worldX, worldY, worldZ);
-
-							// Track tile index - you can specify this
-							int tileIndex = 0; // TODO: Define track tile index
+							var tileIndex = 12;
 
 							// Clamp tile index
 							tileIndex = MathHelper.Clamp(tileIndex, 0, _tilesetColumns * _tilesetRows - 1);
@@ -552,39 +663,7 @@ namespace _3DTrain
 							var position = new Vector3(worldX, worldY, worldZ);
 
 							// Building tile index - you can specify this
-							int tileIndex = 0; // TODO: Define building tile index
-
-							// Clamp tile index
-							tileIndex = MathHelper.Clamp(tileIndex, 0, _tilesetColumns * _tilesetRows - 1);
-
-							// Calculate UV coordinates for the selected tile
-							var tileX = tileIndex % _tilesetColumns;
-							var tileY = tileIndex / _tilesetColumns;
-
-							var sourceRect = new Rectangle(
-								tileX * _tileWidth,
-								tileY * _tileHeight,
-								_tileWidth,
-								_tileHeight
-							);
-
-							billboards.Add(new BillboardData
-							{
-								Position = position,
-								Size = new Vector2(billboardWorldWidth, billboardWorldHeight),
-								SourceRectangle = sourceRect,
-								TextureSize = new Vector2(_tileset.Width, _tileset.Height),
-								Color = Color.White
-							});
-						}
-						else if (layer.Type == TileLayerType.Vehicle)
-						{
-							// Render vehicle at specified height
-							var worldY = layer.Height * _tileHeightInWorld;
-							var position = new Vector3(worldX, worldY, worldZ);
-
-							// Vehicle tile index - you can specify this
-							int tileIndex = 0; // TODO: Define vehicle tile index
+							var tileIndex = 0; // TODO: Define building tile index
 
 							// Clamp tile index
 							tileIndex = MathHelper.Clamp(tileIndex, 0, _tilesetColumns * _tilesetRows - 1);
